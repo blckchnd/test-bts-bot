@@ -68,7 +68,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"5":"exchange","6":"account~exchange","7":"vendors~account~dashboard~dashboard-accounts~deposit-withdraw~exchange~explorer~transfer","8":"exchange~explorer","9":"account~dashboard~dashboard-accounts~deposit-withdraw~transfer","10":"account~exchange~explorer","11":"vendors~exchange","12":"deposit-withdraw","13":"asset","14":"vendors~account~exchange~explorer","15":"vendors~account","16":"explorer","17":"account~asset~dashboard-accounts~explorer","18":"block","19":"account","20":"account~asset","21":"transfer","22":"bots","23":"vendors~deposit-withdraw","24":"news","25":"vendors~news","26":"settings","27":"wallet","28":"existing-account","29":"help","30":"dashboard-accounts","31":"dashboard~dashboard-accounts","32":"dashboard","33":"create-worker"}[chunkId]||chunkId) + "." + {"3":"ce16f470577de0634ace","4":"0ad1b4c612686d4f8736","5":"5ee5d739cd1a4b1b4e8a","6":"ebcbfcb5200223db7c63","7":"dcb1994876cb1516c683","8":"007ff2e7fc9ce2e6a528","9":"9073ec3ce989b1eeac01","10":"2e64af2e34512bdef3d9","11":"47a583b612ee4ffcb5b9","12":"eeb88794f3e20f5fdd66","13":"a49d1ef4814fce84e11f","14":"6a03f6c91b1bebfe1b2c","15":"a46ae725fbcc89660323","16":"c88d125f6386cc6edb3f","17":"236ab35dbc6147974c2c","18":"372205fa14fba7832caf","19":"c010506e35ca40f9ea8b","20":"4641d609835130ec36e7","21":"6febdf9369b8d6cac8db","22":"192e620dc70bcee10e72","23":"ed6c11fb71c2c403ebeb","24":"a22c31f0a24343cddd88","25":"8228e317c820db22b582","26":"4ee63bed13cfd6602f7f","27":"5cd37c35c3e999c895f8","28":"91554fa2d19cd74cb982","29":"70add60d60381784d617","30":"c1aa0f1628db121e3660","31":"dcb17b8d9add7f9fd6e2","32":"e120ee1fadd4f9da0120","33":"60c8bac7b65134530e0c"}[chunkId] + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"5":"exchange","6":"account~exchange","7":"vendors~account~dashboard~dashboard-accounts~deposit-withdraw~exchange~explorer~transfer","8":"exchange~explorer","9":"account~dashboard~dashboard-accounts~deposit-withdraw~transfer","10":"account~exchange~explorer","11":"vendors~exchange","12":"deposit-withdraw","13":"asset","14":"vendors~account~exchange~explorer","15":"vendors~account","16":"explorer","17":"account~asset~dashboard-accounts~explorer","18":"block","19":"account","20":"account~asset","21":"transfer","22":"bots","23":"vendors~bots","24":"vendors~deposit-withdraw","25":"news","26":"vendors~news","27":"settings","28":"wallet","29":"existing-account","30":"help","31":"dashboard-accounts","32":"dashboard~dashboard-accounts","33":"dashboard","34":"create-worker"}[chunkId]||chunkId) + "." + {"3":"ce16f470577de0634ace","4":"0ad1b4c612686d4f8736","5":"5ee5d739cd1a4b1b4e8a","6":"ebcbfcb5200223db7c63","7":"dcb1994876cb1516c683","8":"007ff2e7fc9ce2e6a528","9":"9073ec3ce989b1eeac01","10":"2e64af2e34512bdef3d9","11":"47a583b612ee4ffcb5b9","12":"047a9af9fbc7f5543c52","13":"3388ec1c7ca2e90388a1","14":"6a03f6c91b1bebfe1b2c","15":"a46ae725fbcc89660323","16":"c88d125f6386cc6edb3f","17":"236ab35dbc6147974c2c","18":"2eb3c737899186f079d8","19":"c010506e35ca40f9ea8b","20":"4641d609835130ec36e7","21":"6febdf9369b8d6cac8db","22":"f8a2332548043f1d73a6","23":"798520729378ff152d6b","24":"80d014ddeeb1e3219906","25":"28a6d4124d3a86b4eaab","26":"7144d6c3a6a0e9171c92","27":"45c53bbe50f38fbc3bca","28":"47bed60f4cc38db03f31","29":"7c21c8ec5fb7d39f5d55","30":"469fa18fe469484aabed","31":"13be19900620ece520da","32":"f1fc0325ffd958bf67e8","33":"32257ff2f939a3398679","34":"23e1cd82879fbaac62ec"}[chunkId] + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -102,11 +102,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"16":1,"28":1};
+/******/ 		var cssChunks = {"16":1,"29":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"5":"exchange","6":"account~exchange","7":"vendors~account~dashboard~dashboard-accounts~deposit-withdraw~exchange~explorer~transfer","8":"exchange~explorer","9":"account~dashboard~dashboard-accounts~deposit-withdraw~transfer","10":"account~exchange~explorer","11":"vendors~exchange","12":"deposit-withdraw","13":"asset","14":"vendors~account~exchange~explorer","15":"vendors~account","16":"explorer","17":"account~asset~dashboard-accounts~explorer","18":"block","19":"account","20":"account~asset","21":"transfer","22":"bots","23":"vendors~deposit-withdraw","24":"news","25":"vendors~news","26":"settings","27":"wallet","28":"existing-account","29":"help","30":"dashboard-accounts","31":"dashboard~dashboard-accounts","32":"dashboard","33":"create-worker"}[chunkId]||chunkId) + "." + {"3":"31d6cfe0d16ae931b73c","4":"31d6cfe0d16ae931b73c","5":"31d6cfe0d16ae931b73c","6":"31d6cfe0d16ae931b73c","7":"31d6cfe0d16ae931b73c","8":"31d6cfe0d16ae931b73c","9":"31d6cfe0d16ae931b73c","10":"31d6cfe0d16ae931b73c","11":"31d6cfe0d16ae931b73c","12":"31d6cfe0d16ae931b73c","13":"31d6cfe0d16ae931b73c","14":"31d6cfe0d16ae931b73c","15":"31d6cfe0d16ae931b73c","16":"992ecaf54a5870aa1f17","17":"31d6cfe0d16ae931b73c","18":"31d6cfe0d16ae931b73c","19":"31d6cfe0d16ae931b73c","20":"31d6cfe0d16ae931b73c","21":"31d6cfe0d16ae931b73c","22":"31d6cfe0d16ae931b73c","23":"31d6cfe0d16ae931b73c","24":"31d6cfe0d16ae931b73c","25":"31d6cfe0d16ae931b73c","26":"31d6cfe0d16ae931b73c","27":"31d6cfe0d16ae931b73c","28":"1aa11073db1d8a7a96d0","29":"31d6cfe0d16ae931b73c","30":"31d6cfe0d16ae931b73c","31":"31d6cfe0d16ae931b73c","32":"31d6cfe0d16ae931b73c","33":"31d6cfe0d16ae931b73c"}[chunkId] + ".css";
+/******/ 				var href = "" + ({"5":"exchange","6":"account~exchange","7":"vendors~account~dashboard~dashboard-accounts~deposit-withdraw~exchange~explorer~transfer","8":"exchange~explorer","9":"account~dashboard~dashboard-accounts~deposit-withdraw~transfer","10":"account~exchange~explorer","11":"vendors~exchange","12":"deposit-withdraw","13":"asset","14":"vendors~account~exchange~explorer","15":"vendors~account","16":"explorer","17":"account~asset~dashboard-accounts~explorer","18":"block","19":"account","20":"account~asset","21":"transfer","22":"bots","23":"vendors~bots","24":"vendors~deposit-withdraw","25":"news","26":"vendors~news","27":"settings","28":"wallet","29":"existing-account","30":"help","31":"dashboard-accounts","32":"dashboard~dashboard-accounts","33":"dashboard","34":"create-worker"}[chunkId]||chunkId) + "." + {"3":"31d6cfe0d16ae931b73c","4":"31d6cfe0d16ae931b73c","5":"31d6cfe0d16ae931b73c","6":"31d6cfe0d16ae931b73c","7":"31d6cfe0d16ae931b73c","8":"31d6cfe0d16ae931b73c","9":"31d6cfe0d16ae931b73c","10":"31d6cfe0d16ae931b73c","11":"31d6cfe0d16ae931b73c","12":"31d6cfe0d16ae931b73c","13":"31d6cfe0d16ae931b73c","14":"31d6cfe0d16ae931b73c","15":"31d6cfe0d16ae931b73c","16":"992ecaf54a5870aa1f17","17":"31d6cfe0d16ae931b73c","18":"31d6cfe0d16ae931b73c","19":"31d6cfe0d16ae931b73c","20":"31d6cfe0d16ae931b73c","21":"31d6cfe0d16ae931b73c","22":"31d6cfe0d16ae931b73c","23":"31d6cfe0d16ae931b73c","24":"31d6cfe0d16ae931b73c","25":"31d6cfe0d16ae931b73c","26":"31d6cfe0d16ae931b73c","27":"31d6cfe0d16ae931b73c","28":"31d6cfe0d16ae931b73c","29":"2b5bccf29bf5cd2a9fda","30":"31d6cfe0d16ae931b73c","31":"31d6cfe0d16ae931b73c","32":"31d6cfe0d16ae931b73c","33":"31d6cfe0d16ae931b73c","34":"31d6cfe0d16ae931b73c"}[chunkId] + ".css";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
@@ -1344,84 +1344,84 @@ var Transfer = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
 
 var Bots = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return __webpack_require__.e(/* import() | bots */ 22).then(__webpack_require__.bind(null, 2546));
+        return Promise.all(/* import() | bots */[__webpack_require__.e(23), __webpack_require__.e(22)]).then(__webpack_require__.bind(null, 2546));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 var AccountDepositWithdraw = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return Promise.all(/* import() | deposit-withdraw */[__webpack_require__.e(1), __webpack_require__.e(7), __webpack_require__.e(23), __webpack_require__.e(9), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, 2558));
+        return Promise.all(/* import() | deposit-withdraw */[__webpack_require__.e(1), __webpack_require__.e(7), __webpack_require__.e(24), __webpack_require__.e(9), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, 2584));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 var News = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return Promise.all(/* import() | news */[__webpack_require__.e(25), __webpack_require__.e(24)]).then(__webpack_require__.bind(null, 2723));
+        return Promise.all(/* import() | news */[__webpack_require__.e(26), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, 2749));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 var Settings = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return Promise.all(/* import() | settings */[__webpack_require__.e(28), __webpack_require__.e(27), __webpack_require__.e(26)]).then(__webpack_require__.bind(null, 2744));
+        return Promise.all(/* import() | settings */[__webpack_require__.e(29), __webpack_require__.e(28), __webpack_require__.e(27)]).then(__webpack_require__.bind(null, 2770));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 var Help = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return __webpack_require__.e(/* import() | help */ 29).then(__webpack_require__.bind(null, 2774));
+        return __webpack_require__.e(/* import() | help */ 30).then(__webpack_require__.bind(null, 2800));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 var Asset = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return Promise.all(/* import() | asset */[__webpack_require__.e(17), __webpack_require__.e(20), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, 2775));
+        return Promise.all(/* import() | asset */[__webpack_require__.e(17), __webpack_require__.e(20), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, 2801));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 var Block = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return __webpack_require__.e(/* import() | block */ 18).then(__webpack_require__.bind(null, 2777));
+        return __webpack_require__.e(/* import() | block */ 18).then(__webpack_require__.bind(null, 2803));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 var DashboardAccountsOnly = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return Promise.all(/* import() | dashboard-accounts */[__webpack_require__.e(7), __webpack_require__.e(9), __webpack_require__.e(17), __webpack_require__.e(31), __webpack_require__.e(30)]).then(__webpack_require__.bind(null, 2779));
+        return Promise.all(/* import() | dashboard-accounts */[__webpack_require__.e(7), __webpack_require__.e(9), __webpack_require__.e(17), __webpack_require__.e(32), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, 2805));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 var DashboardContainer = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return Promise.all(/* import() | dashboard */[__webpack_require__.e(7), __webpack_require__.e(9), __webpack_require__.e(31), __webpack_require__.e(32)]).then(__webpack_require__.bind(null, 2781));
+        return Promise.all(/* import() | dashboard */[__webpack_require__.e(7), __webpack_require__.e(9), __webpack_require__.e(32), __webpack_require__.e(33)]).then(__webpack_require__.bind(null, 2807));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 var WalletManager = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return Promise.all(/* import() | wallet */[__webpack_require__.e(28), __webpack_require__.e(27)]).then(__webpack_require__.bind(null, 2750));
+        return Promise.all(/* import() | wallet */[__webpack_require__.e(29), __webpack_require__.e(28)]).then(__webpack_require__.bind(null, 2776));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 var ExistingAccount = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return __webpack_require__.e(/* import() | existing-account */ 28).then(__webpack_require__.bind(null, 2751));
+        return __webpack_require__.e(/* import() | existing-account */ 29).then(__webpack_require__.bind(null, 2777));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 var CreateWorker = react_loadable__WEBPACK_IMPORTED_MODULE_21___default()({
     loader: function loader() {
-        return __webpack_require__.e(/* import() | create-worker */ 33).then(__webpack_require__.bind(null, 2784));
+        return __webpack_require__.e(/* import() | create-worker */ 34).then(__webpack_require__.bind(null, 2810));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
@@ -39261,7 +39261,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Settings = react_loadable__WEBPACK_IMPORTED_MODULE_3___default()({
     loader: function loader() {
-        return Promise.all(/* import() | settings */[__webpack_require__.e(28), __webpack_require__.e(27), __webpack_require__.e(26)]).then(__webpack_require__.bind(null, 2744));
+        return Promise.all(/* import() | settings */[__webpack_require__.e(29), __webpack_require__.e(28), __webpack_require__.e(27)]).then(__webpack_require__.bind(null, 2770));
     },
     loading: _components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_4__["default"]
 });

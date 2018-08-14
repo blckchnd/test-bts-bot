@@ -118,7 +118,7 @@ var AssetImageWrapper = function (_React$Component2) {
 
 /***/ }),
 
-/***/ 2775:
+/***/ 2801:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -138,7 +138,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Utility_HelpContent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(1051);
 /* harmony import */ var common_asset_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(1030);
 /* harmony import */ var common_utils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(567);
-/* harmony import */ var _Utility_FormattedTime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(2776);
+/* harmony import */ var _Utility_FormattedTime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(2802);
 /* harmony import */ var bitsharesjs__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(416);
 /* harmony import */ var bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(485);
 /* harmony import */ var _Utility_Tabs__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(2478);
@@ -1639,7 +1639,7 @@ var AssetSymbolSplitter = function (_React$Component5) {
 
 /***/ }),
 
-/***/ 2776:
+/***/ 2802:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

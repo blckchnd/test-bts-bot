@@ -11,6 +11,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var stores_AccountStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(549);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -28,7 +30,8 @@ var Bots = function (_React$Component) {
     _inherits(Bots, _React$Component);
 
     function Bots() {
-        var _ref;
+        var _ref,
+            _this2 = this;
 
         var _temp, _this, _ret;
 
@@ -42,11 +45,17 @@ var Bots = function (_React$Component) {
             selectStrategy: strategies[0],
             bots: lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].getBots(accounts[0]),
             selectBot: null,
-            enableCreate: true
+            enableCreate: false,
+            botRun: false
         }, _this.handleChangeStrategy = function (event) {
             _this.setState({ selectStrategy: event.target.value });
         }, _this.handleChangeBot = function (event) {
-            _this.setState({ selectBot: event.target.value });
+            var selectBot = event.target.value;
+
+            _this.setState({
+                selectBot: selectBot,
+                botRun: _this.state.bots[selectBot].run
+            });
         }, _this.handleCreate = function (event) {
             event.preventDefault();
             var bots = _this.state.bots;
@@ -55,13 +64,59 @@ var Bots = function (_React$Component) {
             _this.setState({ bots: bots });
         }, _this.handleEnableCreate = function (enableCreate) {
             if (_this.state.enableCreate != enableCreate) _this.setState({ enableCreate: enableCreate });
+        }, _this.handleStartBot = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var bot;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            bot = _this.state.bots[_this.state.selectBot];
+                            _context.next = 3;
+                            return bot.start();
+
+                        case 3:
+                            _this.setState({ botRun: bot.run });
+                            console.log("botRun", _this.state.botRun);
+
+                        case 5:
+                        case "end":
+                            return _context.stop();
+                    }
+                }
+            }, _callee, _this2);
+        })), _this.handleStopBot = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var bot;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            bot = _this.state.bots[_this.state.selectBot];
+                            _context2.next = 3;
+                            return bot.stop();
+
+                        case 3:
+                            _this.setState({ botRun: bot.run });
+
+                        case 4:
+                        case "end":
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, _this2);
+        })), _this.handleDeleteBot = function () {
+            lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].delete(accounts[0], _this.state.bots[_this.state.selectBot]);
+
+            _this.setState({
+                bots: lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].getBots(accounts[0]),
+                selectBot: null
+            });
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(Bots, [{
         key: "render",
         value: function render() {
-            var _this2 = this;
+            var _this3 = this;
 
             var CreateForm = lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].strategies[this.state.selectStrategy].create;
 
@@ -115,7 +170,7 @@ var Bots = function (_React$Component) {
                             { className: "content-block" },
                             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CreateForm, {
                                 ref: function ref(form) {
-                                    _this2.createForm = form;
+                                    _this3.createForm = form;
                                 },
                                 account: accounts[0],
                                 name: this.state.selectStrategy,
@@ -171,10 +226,9 @@ var Bots = function (_React$Component) {
                                     "button",
                                     {
                                         className: "button",
-                                        onClick: function onClick() {
-                                            return bot.start();
-                                        },
-                                        disabled: bot.run
+                                        onClick: this.handleStartBot,
+                                        disabled: this.state.botRun,
+                                        style: { marginLeft: 50 }
                                     },
                                     "Start"
                                 ),
@@ -182,10 +236,9 @@ var Bots = function (_React$Component) {
                                     "button",
                                     {
                                         className: "button",
-                                        onClick: function onClick() {
-                                            return bot.stop();
-                                        },
-                                        disabled: !bot.run
+                                        onClick: this.handleStopBot,
+                                        disabled: !this.state.botRun,
+                                        style: { marginLeft: 50 }
                                     },
                                     "Stop"
                                 ),
@@ -193,7 +246,9 @@ var Bots = function (_React$Component) {
                                     "button",
                                     {
                                         className: "button",
-                                        disabled: bot.run
+                                        onClick: this.handleDeleteBot,
+                                        disabled: this.state.botRun,
+                                        style: { marginLeft: 50 }
                                     },
                                     "Delete"
                                 )
@@ -222,32 +277,45 @@ var Bots = function (_React$Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SpreadTrade__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2548);
-/* harmony import */ var _RelativeOrders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2554);
-/* harmony import */ var stores_BotsStorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2557);
+/* harmony import */ var _RelativeOrders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2580);
+/* harmony import */ var stores_BotsStorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2583);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 
 
 
 
+var bots = {};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     strategies: {
-        SpreadTrade: _SpreadTrade__WEBPACK_IMPORTED_MODULE_0__["default"],
-        RelativeOrders: _RelativeOrders__WEBPACK_IMPORTED_MODULE_1__["default"]
+        SpreadTrade: _SpreadTrade__WEBPACK_IMPORTED_MODULE_0__["default"]
+        //RelativeOrders
     },
-    Storage: stores_BotsStorage__WEBPACK_IMPORTED_MODULE_2__["default"],
-    account: "",
 
     create: function create(strategy, account, initData) {
-        //console.log("Hello, create function", strategy, account, initData)
         var storage = new stores_BotsStorage__WEBPACK_IMPORTED_MODULE_2__["default"](account + "::" + strategy + "[" + initData.name + "]");
 
         return new this.strategies[strategy](account, storage, initData);
     },
+    delete: function _delete(account, bot) {
+        var index = Object.keys(bots[account]).find(function (key) {
+            return bots[account][key] === bot;
+        });
+        console.log("index", index);
+        if (index) {
+            bots[account][index] = undefined;
+            bot.delete();
+        }
+    },
     getBots: function getBots(account) {
         var _this = this;
 
+        bots[account] = bots[account] || {};
+
         return stores_BotsStorage__WEBPACK_IMPORTED_MODULE_2__["default"].getAccountBot(account).map(function (key) {
+            if (bots[account][key]) return bots[account][key];
+
             var _key$replace$split = key.replace(/^__bots__(.+)::(\w+)\[(\w+)\]/, "$2,$3").split(","),
                 _key$replace$split2 = _slicedToArray(_key$replace$split, 2),
                 strategy = _key$replace$split2[0],
@@ -255,7 +323,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
             var storage = new stores_BotsStorage__WEBPACK_IMPORTED_MODULE_2__["default"](account + "::" + strategy + "[" + name + "]");
 
-            return new _this.strategies[strategy](account, storage);
+            var bot = new _this.strategies[strategy](account, storage);
+            bots[account][key] = bot;
+            return bot;
         });
     },
     hasBot: function hasBot(account, strategy, name) {
@@ -280,6 +350,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lib_bots_account__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2553);
 /* harmony import */ var actions_SettingsActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(730);
 /* harmony import */ var actions_WalletUnlockActions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(587);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2554);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -295,6 +367,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 //import MarketsActions from "actions/MarketsActions";
+
 
 
 
@@ -344,7 +417,7 @@ var SpreadTrade = function () {
                         case 10:
 
                             console.log("feed", feedPrice, buyPrice, sellPrice);
-                            console.log(state.base.order.id, state.quote.order.id);
+                            console.log("Orders id", state.base.order.id, state.quote.order.id);
 
                             if (!state.base.order.id) {
                                 _context.next = 18;
@@ -384,27 +457,28 @@ var SpreadTrade = function () {
                         case 27:
                             sellOrder = _context.t1;
 
-
-                            console.log("Orders", buyOrder, sellOrder);
-                            //return
-
                             if (!buyOrder) {
-                                _context.next = 57;
+                                _context.next = 56;
                                 break;
                             }
 
-                            if (!new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](Math.abs(buyPrice - state.base.order.price)).div(state.base.order.price).isGreaterThanOrEqualTo(state.movePercent / 100)) {
-                                _context.next = 55;
+                            if (!(
+                            /*
+                            new BigNumber(Math.abs(buyPrice - state.base.order.price))
+                                .div(state.base.order.price)
+                                .isGreaterThanOrEqualTo(state.movePercent / 100)*/
+                            Math.abs(buyPrice - state.base.order.price) > Math.abs(feedPrice - buyPrice) / 2)) {
+                                _context.next = 54;
                                 break;
                             }
 
                             // move order
 
                             _this.logger.info("move buy order: " + buyPrice + " " + _this.quote.symbol + "/" + _this.base.symbol);
-                            _context.next = 34;
+                            _context.next = 33;
                             return _this.account.cancelOrder(state.base.order.id);
 
-                        case 34:
+                        case 33:
 
                             // check amount in order
                             orderAmount = new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](buyOrder.for_sale).div(Math.pow(10, _this.base.precision)).toNumber();
@@ -414,19 +488,19 @@ var SpreadTrade = function () {
                             // add to sell balance
                             if (state.base.order.amount > orderAmount) state.quote.balance += new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](state.base.order.amount - orderAmount).div(state.base.order.price).toNumber();
 
-                            _context.next = 39;
+                            _context.next = 38;
                             return _this.account.balances(_this.base.symbol);
 
-                        case 39:
+                        case 38:
                             _context.t2 = _context.sent[0].amount;
                             _context.t3 = Math.pow(10, _this.base.precision);
                             accountBalance = _context.t2 / _context.t3;
                             amount = Math.min(accountBalance, state.base.balance, state.base.amount);
-                            _context.prev = 43;
-                            _context.next = 46;
+                            _context.prev = 42;
+                            _context.next = 45;
                             return _this.account.sell(_this.base.symbol, _this.quote.symbol, amount, new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](1).div(buyPrice).toNumber());
 
-                        case 46:
+                        case 45:
                             obj = _context.sent;
 
                             state.base.order = {
@@ -435,21 +509,21 @@ var SpreadTrade = function () {
                                 amount: amount
                             };
                             state.base.balance -= amount;
-                            _context.next = 55;
+                            _context.next = 54;
                             break;
 
-                        case 51:
-                            _context.prev = 51;
-                            _context.t4 = _context["catch"](43);
+                        case 50:
+                            _context.prev = 50;
+                            _context.t4 = _context["catch"](42);
 
                             _this.logger.error(_context.t4);
                             state.base.order.id = undefined;
 
-                        case 55:
-                            _context.next = 77;
+                        case 54:
+                            _context.next = 76;
                             break;
 
-                        case 57:
+                        case 56:
                             if (/^1.7.\d*$/.test(state.base.order.id)) {
                                 // fill order
                                 state.quote.balance += new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](state.base.order.amount).div(state.base.order.price).toNumber();
@@ -457,26 +531,26 @@ var SpreadTrade = function () {
                             }
 
                             _context.t5 = bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"];
-                            _context.next = 61;
+                            _context.next = 60;
                             return _this.account.balances(_this.base.id);
 
-                        case 61:
+                        case 60:
                             _context.t6 = _context.sent[0].amount;
                             _context.t7 = Math.pow(10, _this.base.precision);
                             _accountBalance = new _context.t5(_context.t6).div(_context.t7).toNumber();
 
                             if (!(Math.min(_accountBalance, state.base.balance) >= state.base.amount)) {
-                                _context.next = 77;
+                                _context.next = 76;
                                 break;
                             }
 
                             //buy
                             _this.logger.info("buy: " + buyPrice + " " + _this.quote.symbol + "/" + _this.base.symbol);
-                            _context.prev = 66;
-                            _context.next = 69;
+                            _context.prev = 65;
+                            _context.next = 68;
                             return _this.account.sell(_this.base.symbol, _this.quote.symbol, state.base.amount, new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](1).div(new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](buyPrice)).toNumber());
 
-                        case 69:
+                        case 68:
                             _obj = _context.sent;
 
                             state.base.order = {
@@ -485,33 +559,38 @@ var SpreadTrade = function () {
                                 amount: state.base.amount
                             };
                             state.base.balance -= state.base.amount;
-                            _context.next = 77;
+                            _context.next = 76;
                             break;
 
-                        case 74:
-                            _context.prev = 74;
-                            _context.t8 = _context["catch"](66);
+                        case 73:
+                            _context.prev = 73;
+                            _context.t8 = _context["catch"](65);
 
                             _this.logger.error(_context.t8);
 
-                        case 77:
+                        case 76:
                             if (!sellOrder) {
-                                _context.next = 106;
+                                _context.next = 105;
                                 break;
                             }
 
-                            if (!new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](Math.abs(sellPrice - state.quote.order.price)).div(state.quote.order.price).isGreaterThanOrEqualTo(state.movePercent / 100)) {
-                                _context.next = 104;
+                            if (!(
+                            /*
+                            new BigNumber(Math.abs(sellPrice - state.quote.order.price))
+                                .div(state.quote.order.price)
+                                .isGreaterThanOrEqualTo(state.movePercent / 100)*/
+                            Math.abs(sellPrice - state.quote.order.price) > Math.abs(feedPrice - sellPrice) / 2)) {
+                                _context.next = 103;
                                 break;
                             }
 
                             // move order
 
                             _this.logger.info("move sell order: " + sellPrice + " " + _this.quote.symbol + "/" + _this.base.symbol);
-                            _context.next = 82;
+                            _context.next = 81;
                             return _this.account.cancelOrder(state.quote.order.id);
 
-                        case 82:
+                        case 81:
 
                             // check amount in order
                             _orderAmount = new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](sellOrder.for_sale).div(Math.pow(10, _this.quote.precision)).toNumber();
@@ -522,19 +601,19 @@ var SpreadTrade = function () {
                             if (state.quote.order.amount > _orderAmount) state.base.balance += new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](state.quote.order.amount - _orderAmount).times(state.quote.order.price).toNumber();
 
                             _context.t9 = bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"];
-                            _context.next = 88;
+                            _context.next = 87;
                             return _this.account.balances(_this.quote.symbol);
 
-                        case 88:
+                        case 87:
                             _context.t10 = _context.sent[0].amount;
                             _context.t11 = Math.pow(10, _this.quote.precision);
                             _accountBalance2 = new _context.t9(_context.t10).div(_context.t11).toNumber();
                             _amount = Math.min(_accountBalance2, state.quote.balance, state.quote.amount);
-                            _context.prev = 92;
-                            _context.next = 95;
+                            _context.prev = 91;
+                            _context.next = 94;
                             return _this.account.sell(_this.quote.symbol, _this.base.symbol, _amount, sellPrice);
 
-                        case 95:
+                        case 94:
                             _obj2 = _context.sent;
 
                             state.quote.order = {
@@ -543,21 +622,21 @@ var SpreadTrade = function () {
                                 amount: _amount
                             };
                             state.quote.balance -= _amount;
-                            _context.next = 104;
+                            _context.next = 103;
                             break;
 
-                        case 100:
-                            _context.prev = 100;
-                            _context.t12 = _context["catch"](92);
+                        case 99:
+                            _context.prev = 99;
+                            _context.t12 = _context["catch"](91);
 
                             _this.logger.error(_context.t12);
                             state.quote.order.id = undefined;
 
-                        case 104:
-                            _context.next = 126;
+                        case 103:
+                            _context.next = 125;
                             break;
 
-                        case 106:
+                        case 105:
                             if (/^1.7.\d*$/.test(state.quote.order.id)) {
                                 // fill order
                                 state.base.balance += new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](state.quote.order.amount).times(state.quote.order.price).toNumber();
@@ -565,26 +644,26 @@ var SpreadTrade = function () {
                             }
 
                             _context.t13 = bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"];
-                            _context.next = 110;
+                            _context.next = 109;
                             return _this.account.balances(_this.quote.id);
 
-                        case 110:
+                        case 109:
                             _context.t14 = _context.sent[0].amount;
                             _context.t15 = Math.pow(10, _this.quote.precision);
                             _accountBalance3 = new _context.t13(_context.t14).div(_context.t15).toNumber();
 
                             if (!(Math.min(_accountBalance3, state.quote.balance) >= state.quote.amount)) {
-                                _context.next = 126;
+                                _context.next = 125;
                                 break;
                             }
 
                             //buy
                             _this.logger.info("sell: " + sellPrice + " " + _this.quote.symbol + "/" + _this.base.symbol);
-                            _context.prev = 115;
-                            _context.next = 118;
+                            _context.prev = 114;
+                            _context.next = 117;
                             return _this.account.sell(_this.quote.symbol, _this.base.symbol, state.quote.amount, sellPrice);
 
-                        case 118:
+                        case 117:
                             _obj3 = _context.sent;
 
                             state.quote.order = {
@@ -593,28 +672,27 @@ var SpreadTrade = function () {
                                 amount: state.quote.amount
                             };
                             state.quote.balance -= state.quote.amount;
-                            _context.next = 126;
+                            _context.next = 125;
                             break;
 
-                        case 123:
-                            _context.prev = 123;
-                            _context.t16 = _context["catch"](115);
+                        case 122:
+                            _context.prev = 122;
+                            _context.t16 = _context["catch"](114);
 
                             _this.logger.error(_context.t16);
 
-                        case 126:
+                        case 125:
 
                             _this.storage.write(state);
 
-                        case 127:
+                        case 126:
                         case "end":
                             return _context.stop();
                     }
                 }
-            }, _callee, _this, [[43, 51], [66, 74], [92, 100], [115, 123]]);
+            }, _callee, _this, [[42, 50], [65, 73], [91, 99], [114, 122]]);
         }));
 
-        console.log("constructor Bot", account);
         this.account = new lib_bots_account__WEBPACK_IMPORTED_MODULE_6__["default"](account);
         this.storage = storage;
 
@@ -639,7 +717,7 @@ var SpreadTrade = function () {
                         //id, price and amount
                     }
                 },
-                movePercent: initData.movePercent,
+                //movePercent: initData.movePercent,
                 defaultPrice: initData.defaultPrice
             });
         }
@@ -648,6 +726,7 @@ var SpreadTrade = function () {
 
         this.logger = console;
         this.queueEvents = Promise.resolve();
+        this.run = false;
     }
 
     _createClass(SpreadTrade, [{
@@ -715,8 +794,10 @@ var SpreadTrade = function () {
                             case 0:
                                 bitsharesjs__WEBPACK_IMPORTED_MODULE_2__["ChainStore"].unsubscribe(this.queue);
                                 this.run = false;
+                                _context3.next = 4;
+                                return this.queueEvents;
 
-                            case 2:
+                            case 4:
                             case "end":
                                 return _context3.stop();
                         }
@@ -730,6 +811,11 @@ var SpreadTrade = function () {
 
             return stop;
         }()
+    }, {
+        key: "delete",
+        value: function _delete() {
+            this.storage.delete();
+        }
     }, {
         key: "getCoreFeed",
         value: function () {
@@ -889,7 +975,7 @@ var SpreadTrade = function () {
 
                                 _context7.prev = 3;
                                 _context7.next = 6;
-                                return axios.get("https://api.binance.com/api/v1/trades", { params: { symbol: asset, limit: 1 } });
+                                return axios__WEBPACK_IMPORTED_MODULE_9___default.a.get("https://api.binance.com/api/v1/trades", { params: { symbol: asset, limit: 1 } });
 
                             case 6:
                                 data = _context7.sent;
@@ -985,7 +1071,7 @@ var CreateForm = function (_React$Component) {
             quoteAmount: 0.01,
             baseSpread: 10,
             quoteSpread: 10,
-            movePercent: 5,
+            //movePercent: 5,
             baseBalance: 100,
             quoteBalance: 0.1,
             validate: ["name"]
@@ -1033,18 +1119,16 @@ var CreateForm = function (_React$Component) {
                 case "quoteBalance":
                 case "baseSpread":
                 case "quoteSpread":
-                case "movePercent":
+                /*case "movePercent":
                     if (value === "" || isNaN(+value)) {
                         validate.push(name);
-                        _this.setState({ validate: validate });
+                        this.setState({validate});
                     } else {
-                        _this.setState({
-                            validate: validate.filter(function (input) {
-                                return input !== name;
-                            })
+                        this.setState({
+                            validate: validate.filter(input => input !== name)
                         });
                     }
-                    break;
+                    break;*/
                 case "defaultPrice":
                     if (!isNaN(+value)) _this.setState({
                         validate: validate.filter(function (input) {
@@ -1261,27 +1345,6 @@ var CreateForm = function (_React$Component) {
                     react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                         "label",
                         { className: "left-label" },
-                        "Move Percent"
-                    ),
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-                        name: "movePercent",
-                        id: "movePercent",
-                        type: "text",
-                        ref: "input",
-                        value: this.state.movePercent,
-                        onChange: this.handleChange,
-                        autoComplete: "movePercent",
-                        style: {
-                            border: this.state.validate.includes("movePercent") ? "1px solid red" : "none"
-                        }
-                    })
-                ),
-                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                    "div",
-                    { className: "content-block" },
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                        "label",
-                        { className: "left-label" },
                         "Default Price"
                     ),
                     react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1317,6 +1380,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -1341,7 +1406,53 @@ var StateForm = function (_React$Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = StateForm.__proto__ || Object.getPrototypeOf(StateForm)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
             validate: []
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+        }, _this.handleChange = function (event) {
+            var name = event.target.name,
+                value = event.target.value,
+                base = void 0,
+                quote = void 0;
+
+            switch (name) {
+                case "baseAmount":
+                    base = _this.state.base;
+                    base.amount = value;
+                    _this.setState({ base: base });
+                    break;
+                case "baseBalance":
+                    base = _this.state.base;
+                    base.balance = value;
+                    _this.setState({ base: base });
+                    break;
+                case "baseSpread":
+                    base = _this.state.base;
+                    base.spread = value;
+                    _this.setState({ base: base });
+                    break;
+                case "quoteAmount":
+                    quote = _this.state.quote;
+                    quote.amount = value;
+                    _this.setState({ quote: quote });
+                    break;
+                case "quoteBalance":
+                    quote = _this.state.quote;
+                    quote.balance = value;
+                    _this.setState({ quote: quote });
+                    break;
+                case "quoteSpread":
+                    quote = _this.state.quote;
+                    quote.spread = value;
+                    _this.setState({ quote: quote });
+                    break;
+                //case "movePercent":
+                case "defaultPrice":
+                    _this.setState(_defineProperty({}, name, value));
+                    break;
+            }
+
+            //this.setState({[name]: value}, () => this.validate(name, value));
+        }, _this.handleUpdateBot = function () {
+            _this.props.bot.storage.write(_this.state);
+        }, _this.validate = function (name, value) {}, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(StateForm, [{
@@ -1363,7 +1474,13 @@ var StateForm = function (_React$Component) {
                     { className: "grid-block horizontal" },
                     react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                         "div",
-                        { className: "content-block", style: { marginLeft: 50 } },
+                        {
+                            className: "content-block",
+                            style: {
+                                marginLeft: 50,
+                                marginTop: 30
+                            }
+                        },
                         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                             "label",
                             { style: { textAlign: "center" } },
@@ -1376,7 +1493,6 @@ var StateForm = function (_React$Component) {
                         ),
                         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                             name: "baseAsset",
-                            id: "baseAsset",
                             type: "text",
                             ref: "input",
                             value: this.state.base.asset,
@@ -1392,12 +1508,12 @@ var StateForm = function (_React$Component) {
                         ),
                         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                             name: "baseBalance",
-                            id: "baseBalance",
                             type: "text",
                             ref: "input",
                             value: this.state.base.balance,
                             onChange: this.handleChange,
                             autoComplete: "baseBalance",
+                            disabled: this.props.bot.run,
                             style: {
                                 marginBottom: 30,
                                 border: this.state.validate.includes("baseBalance") ? "1px solid red" : "none"
@@ -1410,12 +1526,12 @@ var StateForm = function (_React$Component) {
                         ),
                         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                             name: "baseAmount",
-                            id: "baseAmount",
                             type: "text",
                             ref: "input",
                             value: this.state.base.amount,
                             onChange: this.handleChange,
                             autoComplete: "baseAmount",
+                            disabled: this.props.bot.run,
                             style: {
                                 marginBottom: 30,
                                 border: this.state.validate.includes("baseAmount") ? "1px solid red" : "none"
@@ -1428,12 +1544,12 @@ var StateForm = function (_React$Component) {
                         ),
                         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                             name: "baseSpread",
-                            id: "baseSpread",
                             type: "text",
                             ref: "input",
                             value: this.state.base.spread,
                             onChange: this.handleChange,
                             autoComplete: "baseSpread",
+                            disabled: this.props.bot.run,
                             style: {
                                 marginBottom: 30,
                                 border: this.state.validate.includes("baseSpread") ? "1px solid red" : "none"
@@ -1442,7 +1558,13 @@ var StateForm = function (_React$Component) {
                     ),
                     react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                         "div",
-                        { className: "content-block", style: { marginLeft: 50 } },
+                        {
+                            className: "content-block",
+                            style: {
+                                marginLeft: 50,
+                                marginTop: 30
+                            }
+                        },
                         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                             "label",
                             { style: { textAlign: "center" } },
@@ -1455,7 +1577,6 @@ var StateForm = function (_React$Component) {
                         ),
                         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                             name: "quoteAsset",
-                            id: "quoteAsset",
                             type: "text",
                             ref: "input",
                             value: this.state.quote.asset,
@@ -1471,12 +1592,12 @@ var StateForm = function (_React$Component) {
                         ),
                         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                             name: "quoteBalance",
-                            id: "quoteBalance",
                             type: "text",
                             ref: "input",
                             value: this.state.quote.balance,
                             onChange: this.handleChange,
                             autoComplete: "quoteBalance",
+                            disabled: this.props.bot.run,
                             style: {
                                 marginBottom: 30,
                                 border: this.state.validate.includes("quoteBalance") ? "1px solid red" : "none"
@@ -1489,12 +1610,12 @@ var StateForm = function (_React$Component) {
                         ),
                         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                             name: "quoteAmount",
-                            id: "quoteAmount",
                             type: "text",
                             ref: "input",
                             value: this.state.quote.amount,
                             onChange: this.handleChange,
                             autoComplete: "quoteAmount",
+                            disabled: this.props.bot.run,
                             style: {
                                 marginBottom: 30,
                                 border: this.state.validate.includes("quoteAmount") ? "1px solid red" : "none"
@@ -1507,12 +1628,12 @@ var StateForm = function (_React$Component) {
                         ),
                         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                             name: "quoteSpread",
-                            id: "quoteSpread",
                             type: "text",
                             ref: "input",
                             value: this.state.quote.spread,
                             onChange: this.handleChange,
                             autoComplete: "quoteSpread",
+                            disabled: this.props.bot.run,
                             style: {
                                 marginBottom: 30,
                                 border: this.state.validate.includes("quoteSpread") ? "1px solid red" : "none"
@@ -1526,41 +1647,30 @@ var StateForm = function (_React$Component) {
                     react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                         "label",
                         { className: "left-label" },
-                        "Move Percent"
-                    ),
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-                        name: "movePercent",
-                        id: "movePercent",
-                        type: "text",
-                        ref: "input",
-                        value: this.state.movePercent,
-                        onChange: this.handleChange,
-                        autoComplete: "movePercent",
-                        style: {
-                            border: this.state.validate.includes("movePercent") ? "1px solid red" : "none"
-                        }
-                    })
-                ),
-                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                    "div",
-                    { className: "content-block" },
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                        "label",
-                        { className: "left-label" },
                         "Default Price"
                     ),
                     react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                         name: "defaultPrice",
-                        id: "defaultPrice",
                         type: "text",
                         ref: "input",
                         value: this.state.defaultPrice,
                         onChange: this.handleChange,
                         autoComplete: "defaultPrice",
+                        disabled: this.props.bot.run,
                         style: {
                             border: this.state.validate.includes("defaultPrice") ? "1px solid red" : "none"
                         }
                     })
+                ),
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    "button",
+                    {
+                        className: "button",
+                        onClick: this.handleUpdateBot,
+                        disabled: this.props.bot.run,
+                        style: { marginLeft: 50, marginBottom: 30 }
+                    },
+                    "Update"
                 )
             );
         }
@@ -1585,7 +1695,7 @@ __webpack_require__.r(__webpack_exports__);
     db: new Proxy(bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__["Apis"], {
         get: function get(apis, method) {
             return function () {
-                console.log("call Apis.db." + method + "(" + [].concat(Array.prototype.slice.call(arguments)) + ")");
+                //console.log(`call Apis.db.${method}(${[...arguments]})`);
                 return apis.instance().db_api().exec(method, [].concat(Array.prototype.slice.call(arguments)));
             };
         }
@@ -2184,13 +2294,13 @@ var Account = function () {
 
 /***/ }),
 
-/***/ 2554:
+/***/ 2580:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var components_Bots_RelativeOrders_Create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2555);
-/* harmony import */ var components_Bots_RelativeOrders_State__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2556);
+/* harmony import */ var components_Bots_RelativeOrders_Create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2581);
+/* harmony import */ var components_Bots_RelativeOrders_State__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2582);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
@@ -2208,7 +2318,7 @@ RelativeOrders.state = components_Bots_RelativeOrders_State__WEBPACK_IMPORTED_MO
 
 /***/ }),
 
-/***/ 2555:
+/***/ 2581:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2252,7 +2362,7 @@ var Create = function (_React$Component) {
 
 /***/ }),
 
-/***/ 2556:
+/***/ 2582:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2296,7 +2406,7 @@ var State = function (_React$Component) {
 
 /***/ }),
 
-/***/ 2557:
+/***/ 2583:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2349,6 +2459,11 @@ var Storage = function () {
         key: "write",
         value: function write(newState) {
             bots.set(this.name, newState);
+        }
+    }, {
+        key: "delete",
+        value: function _delete() {
+            bots.remove(this.name);
         }
     }]);
 

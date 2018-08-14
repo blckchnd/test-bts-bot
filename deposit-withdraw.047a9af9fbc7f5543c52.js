@@ -118,7 +118,7 @@ var AssetImageWrapper = function (_React$Component2) {
 
 /***/ }),
 
-/***/ 2558:
+/***/ 2584:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -134,22 +134,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_translate_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_translate_component__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _Utility_ChainTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(894);
 /* harmony import */ var _Utility_BindToChainState__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(895);
-/* harmony import */ var _DepositWithdraw_BlockTradesGateway__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2559);
-/* harmony import */ var _DepositWithdraw_openledger_OpenLedgerFiatDepositWithdrawal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2563);
-/* harmony import */ var _DepositWithdraw_openledger_OpenLedgerFiatTransactionHistory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2566);
-/* harmony import */ var _DepositWithdraw_blocktrades_BlockTradesBridgeDepositRequest__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(2567);
+/* harmony import */ var _DepositWithdraw_BlockTradesGateway__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2585);
+/* harmony import */ var _DepositWithdraw_openledger_OpenLedgerFiatDepositWithdrawal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2589);
+/* harmony import */ var _DepositWithdraw_openledger_OpenLedgerFiatTransactionHistory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2592);
+/* harmony import */ var _DepositWithdraw_blocktrades_BlockTradesBridgeDepositRequest__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(2593);
 /* harmony import */ var _Utility_HelpContent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(1051);
 /* harmony import */ var stores_AccountStore__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(549);
 /* harmony import */ var stores_SettingsStore__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(709);
 /* harmony import */ var actions_SettingsActions__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(730);
 /* harmony import */ var api_apiConfig__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(735);
-/* harmony import */ var _DepositWithdraw_BitKapital__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(2568);
-/* harmony import */ var _DepositWithdraw_rudex_RuDexGateway__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(2569);
-/* harmony import */ var _DepositWithdraw_rudex_RuDexFiatDepositWithdrawal__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(2578);
+/* harmony import */ var _DepositWithdraw_BitKapital__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(2594);
+/* harmony import */ var _DepositWithdraw_rudex_RuDexGateway__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(2595);
+/* harmony import */ var _DepositWithdraw_rudex_RuDexFiatDepositWithdrawal__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(2604);
 /* harmony import */ var stores_GatewayStore__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(1259);
 /* harmony import */ var _Account_AccountImage__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(1222);
-/* harmony import */ var _DepositWithdraw_gdex_GdexGateway__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(2579);
-/* harmony import */ var _DepositWithdraw_winex_WinexGateway__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(2719);
+/* harmony import */ var _DepositWithdraw_gdex_GdexGateway__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(2605);
+/* harmony import */ var _DepositWithdraw_winex_WinexGateway__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(2745);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(747);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_24__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -737,14 +737,14 @@ var DepositStoreWrapper = function (_React$Component2) {
 
 /***/ }),
 
-/***/ 2559:
+/***/ 2585:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(386);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _DepositWithdraw_blocktrades_BlockTradesGatewayDepositRequest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2560);
+/* harmony import */ var _DepositWithdraw_blocktrades_BlockTradesGatewayDepositRequest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2586);
 /* harmony import */ var react_translate_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(800);
 /* harmony import */ var react_translate_component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_translate_component__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var alt_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(788);
@@ -1096,7 +1096,7 @@ var BlockTradesGateway = function (_React$Component) {
 
 /***/ }),
 
-/***/ 2560:
+/***/ 2586:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1108,11 +1108,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bitsharesjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(416);
 /* harmony import */ var components_Utility_ChainTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(894);
 /* harmony import */ var components_Utility_BindToChainState__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(895);
-/* harmony import */ var _WithdrawModalBlocktrades__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2561);
+/* harmony import */ var _WithdrawModalBlocktrades__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2587);
 /* harmony import */ var _Modal_BaseModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(865);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(737);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2562);
+/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2588);
 /* harmony import */ var components_Utility_AssetName__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1217);
 /* harmony import */ var components_Utility_LinkToAccountById__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(1332);
 /* harmony import */ var common_gatewayMethods__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(1234);
@@ -1792,7 +1792,7 @@ BlockTradesGatewayDepositRequest.defaultProps = {
 
 /***/ }),
 
-/***/ 2561:
+/***/ 2587:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2657,7 +2657,7 @@ WithdrawModalBlocktrades.propTypes = {
 
 /***/ }),
 
-/***/ 2562:
+/***/ 2588:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2734,7 +2734,7 @@ AccountBalance.defaultProps = {
 
 /***/ }),
 
-/***/ 2563:
+/***/ 2589:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2751,10 +2751,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_foundation_apps_src_trigger__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_trigger__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(737);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2562);
+/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2588);
 /* harmony import */ var components_Utility_BalanceComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1232);
-/* harmony import */ var _DepositFiatOpenLedger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2564);
-/* harmony import */ var _WithdrawFiatOpenLedger__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(2565);
+/* harmony import */ var _DepositFiatOpenLedger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2590);
+/* harmony import */ var _WithdrawFiatOpenLedger__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(2591);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(747);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_12__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -3128,7 +3128,7 @@ OpenLedgerFiatDepositWithdrawal = Object(components_Utility_BindToChainState__WE
 
 /***/ }),
 
-/***/ 2564:
+/***/ 2590:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3457,7 +3457,7 @@ DepositFiatOpenLedger.propTypes = {
 
 /***/ }),
 
-/***/ 2565:
+/***/ 2591:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3653,7 +3653,7 @@ WithdrawFiatOpenLedger.propTypes = {
 
 /***/ }),
 
-/***/ 2566:
+/***/ 2592:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3939,7 +3939,7 @@ OpenLedgerFiatTransactionHistory.propTypes = {
 
 /***/ }),
 
-/***/ 2567:
+/***/ 2593:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3954,8 +3954,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Modal_BaseModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(865);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(737);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2562);
-/* harmony import */ var _WithdrawModalBlocktrades__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2561);
+/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2588);
+/* harmony import */ var _WithdrawModalBlocktrades__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2587);
 /* harmony import */ var common_BlockTradesDepositAddressCache__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1236);
 /* harmony import */ var common_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(567);
 /* harmony import */ var actions_AccountActions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(565);
@@ -5921,7 +5921,7 @@ BlockTradesBridgeDepositRequest.propTypes = {
 
 /***/ }),
 
-/***/ 2568:
+/***/ 2594:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5937,7 +5937,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var stores_TransactionConfirmStore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1231);
 /* harmony import */ var actions_AccountActions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(565);
 /* harmony import */ var actions_SettingsActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(730);
-/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2562);
+/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2588);
 /* harmony import */ var common_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(567);
 /* harmony import */ var stores_SettingsStore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(709);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -6170,14 +6170,14 @@ BitKapital.defaultProps = {
 
 /***/ }),
 
-/***/ 2569:
+/***/ 2595:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(386);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _RuDexGatewayDepositRequest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2570);
+/* harmony import */ var _RuDexGatewayDepositRequest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2596);
 /* harmony import */ var react_translate_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(800);
 /* harmony import */ var react_translate_component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_translate_component__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var alt_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(788);
@@ -6191,8 +6191,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(871);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _LoadingIndicator__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(879);
-/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(2574);
-/* harmony import */ var react_select_dist_react_select_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(2576);
+/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(2600);
+/* harmony import */ var react_select_dist_react_select_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(2602);
 /* harmony import */ var react_select_dist_react_select_css__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_select_dist_react_select_css__WEBPACK_IMPORTED_MODULE_12__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -6562,7 +6562,7 @@ var RuDexGateway = function (_React$Component) {
 
 /***/ }),
 
-/***/ 2570:
+/***/ 2596:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6574,16 +6574,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bitsharesjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(416);
 /* harmony import */ var components_Utility_ChainTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(894);
 /* harmony import */ var components_Utility_BindToChainState__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(895);
-/* harmony import */ var _RuDexWithdrawModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2571);
+/* harmony import */ var _RuDexWithdrawModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2597);
 /* harmony import */ var react_foundation_apps_src_modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(866);
 /* harmony import */ var react_foundation_apps_src_modal__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_modal__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react_foundation_apps_src_trigger__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(863);
 /* harmony import */ var react_foundation_apps_src_trigger__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_trigger__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(737);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2562);
-/* harmony import */ var lib_common_RuDexDepositAddressCache__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2573);
-/* harmony import */ var lib_common_RuDexMethods__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(2572);
+/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2588);
+/* harmony import */ var lib_common_RuDexDepositAddressCache__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2599);
+/* harmony import */ var lib_common_RuDexMethods__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(2598);
 /* harmony import */ var components_Utility_AssetName__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(1217);
 /* harmony import */ var components_Utility_LinkToAccountById__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(1332);
 /* harmony import */ var lib_common_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(567);
@@ -7269,7 +7269,7 @@ RuDexGatewayDepositRequest.propTypes = {
 
 /***/ }),
 
-/***/ 2571:
+/***/ 2597:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7291,7 +7291,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var actions_AccountActions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(565);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(737);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var common_RuDexMethods__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(2572);
+/* harmony import */ var common_RuDexMethods__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(2598);
 /* harmony import */ var bitsharesjs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(416);
 /* harmony import */ var react_foundation_apps_src_modal__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(866);
 /* harmony import */ var react_foundation_apps_src_modal__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_modal__WEBPACK_IMPORTED_MODULE_14__);
@@ -8145,7 +8145,7 @@ RuDexWithdrawModal.propTypes = {
 
 /***/ }),
 
-/***/ 2572:
+/***/ 2598:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8278,7 +8278,7 @@ var WithdrawAddresses = {
 
 /***/ }),
 
-/***/ 2573:
+/***/ 2599:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8347,7 +8347,7 @@ var RuDexDepositAddressCache = function () {
 
 /***/ }),
 
-/***/ 2578:
+/***/ 2604:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8364,7 +8364,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_foundation_apps_src_trigger__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_trigger__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(737);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2562);
+/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2588);
 /* harmony import */ var components_Utility_BalanceComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1232);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(747);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_10__);
@@ -8455,25 +8455,25 @@ RuDexFiatDepositWithdrawal = Object(components_Utility_BindToChainState__WEBPACK
 
 /***/ }),
 
-/***/ 2579:
+/***/ 2605:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(386);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var common_gdexMethods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2580);
+/* harmony import */ var common_gdexMethods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2606);
 /* harmony import */ var _LoadingIndicator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(879);
 /* harmony import */ var react_translate_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(800);
 /* harmony import */ var react_translate_component__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_translate_component__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _GdexGatewayInfo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2581);
+/* harmony import */ var _GdexGatewayInfo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2607);
 /* harmony import */ var alt_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(788);
 /* harmony import */ var alt_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(alt_react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var stores_SettingsStore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(709);
 /* harmony import */ var actions_SettingsActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(730);
-/* harmony import */ var _lib_common_GdexCache__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2582);
-/* harmony import */ var _GdexHistory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2584);
-/* harmony import */ var _GdexAgreementModal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2585);
+/* harmony import */ var _lib_common_GdexCache__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2608);
+/* harmony import */ var _GdexHistory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2610);
+/* harmony import */ var _GdexAgreementModal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2611);
 /* harmony import */ var _Modal_BaseModal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(865);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(737);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_12__);
@@ -8501,7 +8501,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NodeRSA = __webpack_require__(2586);
+var NodeRSA = __webpack_require__(2612);
 var gdexPublicKey = new NodeRSA("-----BEGIN PUBLIC KEY-----\n" + "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCH+QtHPKcWxdL25xL4pCuu16tKh6yPx/TFnd/8\n" + "cSt2TC+sPuYsD0h/sy4VKNxhBb7F7U/TLXjMxNcSfPVPjPM3X2LvOlmU9LOEcJGrmlmOOiyO/kws\n" + "yKKOhR4UyZ1NghhfHjuyDBj6V8fCL+xBZTJWsh/X61Z0wLCwOzXcQCsNJwIDAQAB\n" + "-----END PUBLIC KEY-----");
 
 var GdexGateway = function (_React$Component) {
@@ -9121,7 +9121,7 @@ var GdexGateway = function (_React$Component) {
 
 /***/ }),
 
-/***/ 2580:
+/***/ 2606:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9326,7 +9326,7 @@ var WithdrawAddresses = {
 
 /***/ }),
 
-/***/ 2581:
+/***/ 2607:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9338,16 +9338,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_translate_component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_translate_component__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Utility_AssetName__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1217);
 /* harmony import */ var _Utility_LinkToAccountById__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1332);
-/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2562);
+/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2588);
 /* harmony import */ var _Modal_BaseModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(865);
 /* harmony import */ var _Utility_ChainTypes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(894);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(737);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _lib_common_GdexCache__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2582);
-/* harmony import */ var _lib_common_gdexMethods__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2580);
+/* harmony import */ var _lib_common_GdexCache__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2608);
+/* harmony import */ var _lib_common_gdexMethods__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2606);
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(1248);
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(qrcode_react__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _GdexWithdrawModal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(2583);
+/* harmony import */ var _GdexWithdrawModal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(2609);
 /* harmony import */ var counterpart__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(571);
 /* harmony import */ var counterpart__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(counterpart__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(747);
@@ -10019,7 +10019,7 @@ var DepositQrCodeModal = function (_React$Component2) {
 
 /***/ }),
 
-/***/ 2582:
+/***/ 2608:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10132,7 +10132,7 @@ var GdexCache = function () {
 
 /***/ }),
 
-/***/ 2583:
+/***/ 2609:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10154,7 +10154,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var actions_AccountActions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(565);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(737);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var common_gdexMethods__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(2580);
+/* harmony import */ var common_gdexMethods__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(2606);
 /* harmony import */ var bitsharesjs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(416);
 /* harmony import */ var react_foundation_apps_src_modal__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(866);
 /* harmony import */ var react_foundation_apps_src_modal__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_modal__WEBPACK_IMPORTED_MODULE_14__);
@@ -11108,7 +11108,7 @@ GdexWithdrawModal.propTypes = {
 
 /***/ }),
 
-/***/ 2584:
+/***/ 2610:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11119,7 +11119,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_translate_component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_translate_component__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var common_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(567);
 /* harmony import */ var _Icon_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(802);
-/* harmony import */ var _lib_common_gdexMethods__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2580);
+/* harmony import */ var _lib_common_gdexMethods__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2606);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(747);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_5__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -11451,7 +11451,7 @@ GdexHistory.defaultProps = {
 
 /***/ }),
 
-/***/ 2585:
+/***/ 2611:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12103,21 +12103,21 @@ GdexAgreementModal.propTypes = {
 
 /***/ }),
 
-/***/ 2631:
+/***/ 2657:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 2634:
+/***/ 2660:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 2719:
+/***/ 2745:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12131,8 +12131,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alt_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(alt_react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var stores_SettingsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(709);
 /* harmony import */ var actions_SettingsActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(730);
-/* harmony import */ var components_DepositWithdraw_winex_WinexRecentTransactions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2720);
-/* harmony import */ var components_DepositWithdraw_winex_WinexGatewayRequest__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2721);
+/* harmony import */ var components_DepositWithdraw_winex_WinexRecentTransactions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2746);
+/* harmony import */ var components_DepositWithdraw_winex_WinexGatewayRequest__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2747);
 /* harmony import */ var components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(879);
 /* harmony import */ var api_apiConfig__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(735);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
@@ -12474,7 +12474,7 @@ var WinexGateway = function (_React$Component) {
 
 /***/ }),
 
-/***/ 2720:
+/***/ 2746:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12714,7 +12714,7 @@ WinexRecentTransactions.propTypes = {
 
 /***/ }),
 
-/***/ 2721:
+/***/ 2747:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12726,11 +12726,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bitsharesjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(416);
 /* harmony import */ var components_Utility_ChainTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(894);
 /* harmony import */ var components_Utility_BindToChainState__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(895);
-/* harmony import */ var components_DepositWithdraw_winex_WinexWithdrawModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2722);
+/* harmony import */ var components_DepositWithdraw_winex_WinexWithdrawModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2748);
 /* harmony import */ var _Modal_BaseModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(865);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(737);
 /* harmony import */ var react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_foundation_apps_src_utils_foundation_api__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2562);
+/* harmony import */ var _Account_AccountBalance__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2588);
 /* harmony import */ var common_BlockTradesDepositAddressCache__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1236);
 /* harmony import */ var components_Utility_AssetName__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(1217);
 /* harmony import */ var components_Utility_LinkToAccountById__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(1332);
@@ -13485,7 +13485,7 @@ WinexGatewayRequest.defaultProps = {
 
 /***/ }),
 
-/***/ 2722:
+/***/ 2748:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
