@@ -9,6 +9,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var lib_bots__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2547);
 /* harmony import */ var stores_AccountStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(549);
+/* harmony import */ var alt_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(788);
+/* harmony import */ var alt_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(alt_react__WEBPACK_IMPORTED_MODULE_3__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -23,48 +25,45 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var strategies = Object.keys(lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].strategies);
-var accounts = Array.from(stores_AccountStore__WEBPACK_IMPORTED_MODULE_2__["default"].getState().myActiveAccounts);
 
 var Bots = function (_React$Component) {
     _inherits(Bots, _React$Component);
 
     function Bots() {
-        var _ref,
-            _this2 = this;
-
-        var _temp, _this, _ret;
+        var _this2 = this;
 
         _classCallCheck(this, Bots);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
+        var _this = _possibleConstructorReturn(this, (Bots.__proto__ || Object.getPrototypeOf(Bots)).call(this));
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Bots.__proto__ || Object.getPrototypeOf(Bots)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            selectStrategy: strategies[0],
-            bots: lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].getBots(accounts[0]),
-            selectBot: null,
-            enableCreate: false,
-            botRun: false
-        }, _this.handleChangeStrategy = function (event) {
+        _this.handleChangeStrategy = function (event) {
             _this.setState({ selectStrategy: event.target.value });
-        }, _this.handleChangeBot = function (event) {
+        };
+
+        _this.handleChangeBot = function (event) {
             var selectBot = event.target.value;
 
             _this.setState({
                 selectBot: selectBot,
                 botRun: _this.state.bots[selectBot].run
             });
-        }, _this.handleCreate = function (event) {
+        };
+
+        _this.handleCreate = function (event) {
             event.preventDefault();
             var bots = _this.state.bots;
 
-            bots.push(lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].create(_this.state.selectStrategy, accounts[0], _this.createForm.state));
+            bots.push(lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].create(_this.state.selectStrategy, _this.props.currentAccount, _this.createForm.state));
             _this.setState({ bots: bots });
-        }, _this.handleEnableCreate = function (enableCreate) {
+
+            if (_this.createForm.validate) _this.createForm.validate("name", _this.createForm.state.name);
+        };
+
+        _this.handleEnableCreate = function (enableCreate) {
             if (_this.state.enableCreate != enableCreate) _this.setState({ enableCreate: enableCreate });
-        }, _this.handleStartBot = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        };
+
+        _this.handleStartBot = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
             var bot;
             return regeneratorRuntime.wrap(function _callee$(_context) {
                 while (1) {
@@ -76,15 +75,15 @@ var Bots = function (_React$Component) {
 
                         case 3:
                             _this.setState({ botRun: bot.run });
-                            console.log("botRun", _this.state.botRun);
 
-                        case 5:
+                        case 4:
                         case "end":
                             return _context.stop();
                     }
                 }
             }, _callee, _this2);
-        })), _this.handleStopBot = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        }));
+        _this.handleStopBot = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
             var bot;
             return regeneratorRuntime.wrap(function _callee2$(_context2) {
                 while (1) {
@@ -103,24 +102,49 @@ var Bots = function (_React$Component) {
                     }
                 }
             }, _callee2, _this2);
-        })), _this.handleDeleteBot = function () {
-            lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].delete(accounts[0], _this.state.bots[_this.state.selectBot]);
+        }));
+
+        _this.handleDeleteBot = function () {
+            lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].delete(_this.state.bots[_this.state.selectBot]);
 
             _this.setState({
-                bots: lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].getBots(accounts[0]),
-                selectBot: null
+                bots: lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].getBots(_this.props.currentAccount),
+                selectBot: 0
             });
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+        };
+
+        _this.strategies = lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].strategies;
+        _this.state = {
+            selectStrategy: Object.keys(_this.strategies)[0],
+            bots: [],
+            selectBot: 0,
+            enableCreate: false,
+            botRun: false
+        };
+        return _this;
     }
 
     _createClass(Bots, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var bots = lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].getBots(this.props.currentAccount);
+            this.setState({
+                bots: bots,
+                selectBot: 0,
+                botRun: bots[0].run
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
             var _this3 = this;
 
-            var CreateForm = lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].strategies[this.state.selectStrategy].create;
+            //console.log("start render main page", this.props)
+            if (this.props.currentAccount === null) return null;
 
-            var bot = this.state.selectBot ? this.state.bots[this.state.selectBot] : null;
+            var CreateForm = this.strategies[this.state.selectStrategy].create;
+
+            var bot = this.state.bots[this.state.selectBot] || null;
 
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                 "div",
@@ -151,10 +175,10 @@ var Bots = function (_React$Component) {
                                     "select",
                                     {
                                         className: "form-control bts-select ",
-                                        value: this.props.selectStrategy,
+                                        value: this.state.selectStrategy,
                                         onChange: this.handleChangeStrategy
                                     },
-                                    strategies.map(function (name) {
+                                    Object.keys(this.strategies).map(function (name) {
                                         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                                             "option",
                                             { key: name, value: name },
@@ -172,7 +196,7 @@ var Bots = function (_React$Component) {
                                 ref: function ref(form) {
                                     _this3.createForm = form;
                                 },
-                                account: accounts[0],
+                                account: this.props.currentAccount,
                                 name: this.state.selectStrategy,
                                 enableCreate: this.handleEnableCreate
                             }),
@@ -199,29 +223,24 @@ var Bots = function (_React$Component) {
                             "select",
                             {
                                 className: "form-control bts-select",
-                                value: this.props.selectBot,
+                                value: this.state.selectBot,
                                 onChange: this.handleChangeBot
                             },
-                            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                                "option",
-                                { key: "empty", value: null },
-                                "Select bot"
-                            ),
                             this.state.bots.map(function (bot, index) {
                                 return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                                     "option",
                                     { key: bot.name, value: index },
-                                    bot.name
+                                    bot.name + " (" + bot.constructor.name + ")"
                                 );
                             })
                         ),
                         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                             "div",
                             { className: "content-block" },
-                            this.state.selectBot ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                            bot ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                                 "div",
                                 null,
-                                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(bot.state, { bot: bot }),
+                                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(bot.state, { key: bot.name, bot: bot }),
                                 react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                                     "button",
                                     {
@@ -267,7 +286,16 @@ var Bots = function (_React$Component) {
     return Bots;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Bots);
+/* harmony default export */ __webpack_exports__["default"] = (Object(alt_react__WEBPACK_IMPORTED_MODULE_3__["connect"])(Bots, {
+    listenTo: function listenTo() {
+        return [stores_AccountStore__WEBPACK_IMPORTED_MODULE_2__["default"]];
+    },
+    getProps: function getProps() {
+        return {
+            currentAccount: stores_AccountStore__WEBPACK_IMPORTED_MODULE_2__["default"].getState().currentAccount
+        };
+    }
+}));
 
 /***/ }),
 
@@ -277,12 +305,11 @@ var Bots = function (_React$Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SpreadTrade__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2548);
-/* harmony import */ var _RelativeOrders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2580);
-/* harmony import */ var stores_BotsStorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2583);
+/* harmony import */ var stores_BotsStorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2554);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 
-
+//import RelativeOrders from "./RelativeOrders";
 
 
 var bots = {};
@@ -294,43 +321,46 @@ var bots = {};
     },
 
     create: function create(strategy, account, initData) {
-        var storage = new stores_BotsStorage__WEBPACK_IMPORTED_MODULE_2__["default"](account + "::" + strategy + "[" + initData.name + "]");
+        var storage = new stores_BotsStorage__WEBPACK_IMPORTED_MODULE_1__["default"](account + "::" + strategy + "[" + initData.name + "]");
 
-        return new this.strategies[strategy](account, storage, initData);
+        var bot = new this.strategies[strategy](account, storage, initData);
+        bots["__bots__" + storage.name] = bot;
+
+        return bot;
     },
-    delete: function _delete(account, bot) {
-        var index = Object.keys(bots[account]).find(function (key) {
-            return bots[account][key] === bot;
-        });
-        console.log("index", index);
-        if (index) {
-            bots[account][index] = undefined;
-            bot.delete();
-        }
+    delete: function _delete(bot) {
+        var name = "__bots__" + bot.storage.name;
+
+        bots[name].delete();
+        delete bots[name];
     },
     getBots: function getBots(account) {
         var _this = this;
 
-        bots[account] = bots[account] || {};
+        //console.log("getBots", Object.keys(bots))
 
-        return stores_BotsStorage__WEBPACK_IMPORTED_MODULE_2__["default"].getAccountBot(account).map(function (key) {
-            if (bots[account][key]) return bots[account][key];
+        return stores_BotsStorage__WEBPACK_IMPORTED_MODULE_1__["default"].getAccountBot(account).map(function (key) {
+            if (bots[key]) return bots[key];
 
             var _key$replace$split = key.replace(/^__bots__(.+)::(\w+)\[(\w+)\]/, "$2,$3").split(","),
                 _key$replace$split2 = _slicedToArray(_key$replace$split, 2),
                 strategy = _key$replace$split2[0],
                 name = _key$replace$split2[1];
 
-            var storage = new stores_BotsStorage__WEBPACK_IMPORTED_MODULE_2__["default"](account + "::" + strategy + "[" + name + "]");
+            if (!strategy || !name) return null;
+
+            var storage = new stores_BotsStorage__WEBPACK_IMPORTED_MODULE_1__["default"](account + "::" + strategy + "[" + name + "]");
 
             var bot = new _this.strategies[strategy](account, storage);
-            bots[account][key] = bot;
+            bots[key] = bot;
             return bot;
+        }).filter(function (el) {
+            return el;
         });
     },
     hasBot: function hasBot(account, strategy, name) {
         console.log("check name stategy", account, strategy, name);
-        return stores_BotsStorage__WEBPACK_IMPORTED_MODULE_2__["default"].has(account + "::" + strategy + "[" + name + "]");
+        return stores_BotsStorage__WEBPACK_IMPORTED_MODULE_1__["default"].has(account + "::" + strategy + "[" + name + "]");
     }
 });
 
@@ -342,16 +372,14 @@ var bots = {};
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var components_Bots_SpreadTrade_CreateForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2549);
-/* harmony import */ var components_Bots_SpreadTrade_StateForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2550);
+/* harmony import */ var components_Bots_SpreadTrade_StateForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2551);
 /* harmony import */ var bitsharesjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(416);
-/* harmony import */ var lib_bots_apis__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2551);
+/* harmony import */ var lib_bots_apis__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2550);
 /* harmony import */ var lib_bots_assets__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2552);
 /* harmony import */ var bignumber_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1287);
 /* harmony import */ var lib_bots_account__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2553);
 /* harmony import */ var actions_SettingsActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(730);
 /* harmony import */ var actions_WalletUnlockActions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(587);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2554);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -365,8 +393,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-
-//import MarketsActions from "actions/MarketsActions";
 
 
 
@@ -385,14 +411,14 @@ var SpreadTrade = function () {
         };
 
         this.checkOrders = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var state, feedPrice, buyPrice, sellPrice, buyOrder, sellOrder, orderAmount, accountBalance, amount, obj, _accountBalance, _obj, _orderAmount, _accountBalance2, _amount, _obj2, _accountBalance3, _obj3;
+            var state, feedPrice, buyPrice, sellPrice, buyOrder, sellOrder, ticker, accountBalances, baseBalance, quoteBalance, orderAmount, amount, obj, _obj, _orderAmount, _amount, _obj2, _obj3;
 
             return regeneratorRuntime.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
                             state = _this.storage.read();
-
+                            //console.log("state", state);
 
                             _this.defaultPrice = state.defaultPrice;
 
@@ -415,92 +441,98 @@ var SpreadTrade = function () {
                             return _context.abrupt("return");
 
                         case 10:
-
-                            console.log("feed", feedPrice, buyPrice, sellPrice);
-                            console.log("Orders id", state.base.order.id, state.quote.order.id);
-
                             if (!state.base.order.id) {
-                                _context.next = 18;
+                                _context.next = 16;
                                 break;
                             }
 
-                            _context.next = 15;
+                            _context.next = 13;
                             return lib_bots_apis__WEBPACK_IMPORTED_MODULE_3__["default"].db.get_objects([state.base.order.id]);
 
-                        case 15:
+                        case 13:
                             _context.t0 = _context.sent[0];
-                            _context.next = 19;
+                            _context.next = 17;
                             break;
 
-                        case 18:
+                        case 16:
                             _context.t0 = state.base.order.id;
 
-                        case 19:
+                        case 17:
                             buyOrder = _context.t0;
 
                             if (!state.quote.order.id) {
-                                _context.next = 26;
+                                _context.next = 24;
                                 break;
                             }
 
-                            _context.next = 23;
+                            _context.next = 21;
                             return lib_bots_apis__WEBPACK_IMPORTED_MODULE_3__["default"].db.get_objects([state.quote.order.id]);
 
-                        case 23:
+                        case 21:
                             _context.t1 = _context.sent[0];
-                            _context.next = 27;
+                            _context.next = 25;
                             break;
 
-                        case 26:
+                        case 24:
                             _context.t1 = state.quote.order.id;
 
-                        case 27:
+                        case 25:
                             sellOrder = _context.t1;
+                            _context.next = 28;
+                            return lib_bots_apis__WEBPACK_IMPORTED_MODULE_3__["default"].db.get_ticker(_this.base.symbol, _this.quote.symbol);
+
+                        case 28:
+                            ticker = _context.sent;
+                            _context.next = 31;
+                            return _this.account.balances(_this.base.id, _this.quote.id);
+
+                        case 31:
+                            _context.t2 = function (acc, balance) {
+                                _this.base.id === balance.asset_id ? acc.base = Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(balance.amount).div(Math.pow(10, _this.base.precision)).toNumber() : acc.quote = Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(balance.amount).div(Math.pow(10, _this.quote.precision)).toNumber();
+                                return acc;
+                            };
+
+                            _context.t3 = {};
+                            accountBalances = _context.sent.reduce(_context.t2, _context.t3);
+                            baseBalance = state.base.balance === "-" ? 0 : state.base.balance === "" ? accountBalances.base : Math.min(accountBalances.base, state.base.balance);
+                            quoteBalance = state.quote.balance === "-" ? 0 : state.quote.balance === "" ? accountBalances.quote : Math.min(accountBalances.quote, state.quote.balance);
+
+
+                            console.log("orders", buyOrder, sellOrder);
 
                             if (!buyOrder) {
-                                _context.next = 56;
+                                _context.next = 60;
                                 break;
                             }
 
-                            if (!(
-                            /*
-                            new BigNumber(Math.abs(buyPrice - state.base.order.price))
-                                .div(state.base.order.price)
-                                .isGreaterThanOrEqualTo(state.movePercent / 100)*/
-                            Math.abs(buyPrice - state.base.order.price) > Math.abs(feedPrice - buyPrice) / 2)) {
-                                _context.next = 54;
+                            if (!(Math.abs(buyPrice - state.base.order.price) > Math.abs(feedPrice - buyPrice) / 2 && ticker.lowest_ask > buyPrice)) {
+                                _context.next = 58;
                                 break;
                             }
 
                             // move order
 
                             _this.logger.info("move buy order: " + buyPrice + " " + _this.quote.symbol + "/" + _this.base.symbol);
-                            _context.next = 33;
+                            _context.next = 42;
                             return _this.account.cancelOrder(state.base.order.id);
 
-                        case 33:
+                        case 42:
 
                             // check amount in order
-                            orderAmount = new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](buyOrder.for_sale).div(Math.pow(10, _this.base.precision)).toNumber();
+                            orderAmount = Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(buyOrder.for_sale).div(Math.pow(10, _this.base.precision)).toNumber();
 
-                            state.base.balance += orderAmount;
+
+                            !["", "-"].includes(state.base.balance) && (state.base.balance = Number(state.base.balance) + orderAmount);
 
                             // add to sell balance
-                            if (state.base.order.amount > orderAmount) state.quote.balance += new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](state.base.order.amount - orderAmount).div(state.base.order.price).toNumber();
+                            if (state.base.order.amount > orderAmount && !["", "-"].incudes(state.quote.balance)) state.quote.balance = Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(state.base.order.amount - orderAmount).div(state.base.order.price).plus(state.quote.balance).toNumber();
 
-                            _context.next = 38;
-                            return _this.account.balances(_this.base.symbol);
+                            amount = Math.min(baseBalance, state.base.amount);
+                            _context.prev = 46;
+                            _context.next = 49;
+                            return _this.account.sell(_this.base.symbol, _this.quote.symbol, amount, Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(1).div(buyPrice).toNumber());
 
-                        case 38:
-                            _context.t2 = _context.sent[0].amount;
-                            _context.t3 = Math.pow(10, _this.base.precision);
-                            accountBalance = _context.t2 / _context.t3;
-                            amount = Math.min(accountBalance, state.base.balance, state.base.amount);
-                            _context.prev = 42;
-                            _context.next = 45;
-                            return _this.account.sell(_this.base.symbol, _this.quote.symbol, amount, new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](1).div(buyPrice).toNumber());
-
-                        case 45:
+                        case 49:
                             obj = _context.sent;
 
                             state.base.order = {
@@ -508,49 +540,41 @@ var SpreadTrade = function () {
                                 price: buyPrice,
                                 amount: amount
                             };
-                            state.base.balance -= amount;
-                            _context.next = 54;
+                            !["", "-"].includes(state.base.balance) && (state.base.balance -= amount);
+                            _context.next = 58;
                             break;
 
-                        case 50:
-                            _context.prev = 50;
-                            _context.t4 = _context["catch"](42);
+                        case 54:
+                            _context.prev = 54;
+                            _context.t4 = _context["catch"](46);
 
                             _this.logger.error(_context.t4);
                             state.base.order.id = undefined;
 
-                        case 54:
-                            _context.next = 76;
+                        case 58:
+                            _context.next = 74;
                             break;
 
-                        case 56:
+                        case 60:
                             if (/^1.7.\d*$/.test(state.base.order.id)) {
                                 // fill order
-                                state.quote.balance += new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](state.base.order.amount).div(state.base.order.price).toNumber();
+                                !["", "-"].includes(state.quote.balance) && (state.quote.balance = Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(state.base.order.amount).div(state.base.order.price).plus(state.quote.balance).toNumber());
+
                                 state.base.order.id = undefined;
                             }
 
-                            _context.t5 = bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"];
-                            _context.next = 60;
-                            return _this.account.balances(_this.base.id);
-
-                        case 60:
-                            _context.t6 = _context.sent[0].amount;
-                            _context.t7 = Math.pow(10, _this.base.precision);
-                            _accountBalance = new _context.t5(_context.t6).div(_context.t7).toNumber();
-
-                            if (!(Math.min(_accountBalance, state.base.balance) >= state.base.amount)) {
-                                _context.next = 76;
+                            if (!(baseBalance >= state.base.amount && ticker.lowest_ask > buyPrice)) {
+                                _context.next = 74;
                                 break;
                             }
 
                             //buy
                             _this.logger.info("buy: " + buyPrice + " " + _this.quote.symbol + "/" + _this.base.symbol);
-                            _context.prev = 65;
-                            _context.next = 68;
-                            return _this.account.sell(_this.base.symbol, _this.quote.symbol, state.base.amount, new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](1).div(new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](buyPrice)).toNumber());
+                            _context.prev = 63;
+                            _context.next = 66;
+                            return _this.account.sell(_this.base.symbol, _this.quote.symbol, state.base.amount, Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(1).div(buyPrice).toNumber());
 
-                        case 68:
+                        case 66:
                             _obj = _context.sent;
 
                             state.base.order = {
@@ -558,62 +582,49 @@ var SpreadTrade = function () {
                                 price: buyPrice,
                                 amount: state.base.amount
                             };
-                            state.base.balance -= state.base.amount;
-                            _context.next = 76;
+                            !["", "-"].includes(state.base.balance) && (state.base.balance -= state.base.amount);
+                            _context.next = 74;
                             break;
 
-                        case 73:
-                            _context.prev = 73;
-                            _context.t8 = _context["catch"](65);
+                        case 71:
+                            _context.prev = 71;
+                            _context.t5 = _context["catch"](63);
 
-                            _this.logger.error(_context.t8);
+                            _this.logger.error(_context.t5);
 
-                        case 76:
+                        case 74:
                             if (!sellOrder) {
-                                _context.next = 105;
+                                _context.next = 97;
                                 break;
                             }
 
-                            if (!(
-                            /*
-                            new BigNumber(Math.abs(sellPrice - state.quote.order.price))
-                                .div(state.quote.order.price)
-                                .isGreaterThanOrEqualTo(state.movePercent / 100)*/
-                            Math.abs(sellPrice - state.quote.order.price) > Math.abs(feedPrice - sellPrice) / 2)) {
-                                _context.next = 103;
+                            if (!(Math.abs(sellPrice - state.quote.order.price) > Math.abs(feedPrice - sellPrice) / 2 && ticker.highest_bid < sellPrice)) {
+                                _context.next = 95;
                                 break;
                             }
 
                             // move order
 
                             _this.logger.info("move sell order: " + sellPrice + " " + _this.quote.symbol + "/" + _this.base.symbol);
-                            _context.next = 81;
+                            _context.next = 79;
                             return _this.account.cancelOrder(state.quote.order.id);
 
-                        case 81:
+                        case 79:
 
                             // check amount in order
-                            _orderAmount = new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](sellOrder.for_sale).div(Math.pow(10, _this.quote.precision)).toNumber();
+                            _orderAmount = Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(sellOrder.for_sale).div(Math.pow(10, _this.quote.precision)).toNumber();
 
-                            state.quote.balance += _orderAmount;
+                            !["", "-"].includes(state.quote.balance) && (state.quote.balance = Number(state.quote.balance) + _orderAmount);
 
                             // add to buy balance
-                            if (state.quote.order.amount > _orderAmount) state.base.balance += new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](state.quote.order.amount - _orderAmount).times(state.quote.order.price).toNumber();
+                            if (state.quote.order.amount > _orderAmount && !["", "-"].includes(state.base.balance)) state.base.balance = Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(state.quote.order.amount - _orderAmount).times(state.quote.order.price).plus(state.base.balance).toNumber();
 
-                            _context.t9 = bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"];
-                            _context.next = 87;
-                            return _this.account.balances(_this.quote.symbol);
-
-                        case 87:
-                            _context.t10 = _context.sent[0].amount;
-                            _context.t11 = Math.pow(10, _this.quote.precision);
-                            _accountBalance2 = new _context.t9(_context.t10).div(_context.t11).toNumber();
-                            _amount = Math.min(_accountBalance2, state.quote.balance, state.quote.amount);
-                            _context.prev = 91;
-                            _context.next = 94;
+                            _amount = Math.min(quoteBalance, state.quote.amount);
+                            _context.prev = 83;
+                            _context.next = 86;
                             return _this.account.sell(_this.quote.symbol, _this.base.symbol, _amount, sellPrice);
 
-                        case 94:
+                        case 86:
                             _obj2 = _context.sent;
 
                             state.quote.order = {
@@ -621,49 +632,40 @@ var SpreadTrade = function () {
                                 price: sellPrice,
                                 amount: _amount
                             };
-                            state.quote.balance -= _amount;
-                            _context.next = 103;
+                            !["", "-"].includes(state.quote.balance) && (state.quote.balance -= _amount);
+                            _context.next = 95;
                             break;
 
-                        case 99:
-                            _context.prev = 99;
-                            _context.t12 = _context["catch"](91);
+                        case 91:
+                            _context.prev = 91;
+                            _context.t6 = _context["catch"](83);
 
-                            _this.logger.error(_context.t12);
+                            _this.logger.error(_context.t6);
                             state.quote.order.id = undefined;
 
-                        case 103:
-                            _context.next = 125;
+                        case 95:
+                            _context.next = 111;
                             break;
 
-                        case 105:
+                        case 97:
                             if (/^1.7.\d*$/.test(state.quote.order.id)) {
                                 // fill order
-                                state.base.balance += new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](state.quote.order.amount).times(state.quote.order.price).toNumber();
+                                !["", "-"].includes(state.base.balance) && (state.base.balance = Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(state.quote.order.amount).times(state.quote.order.price).plus(state.base.balance).toNumber());
                                 state.quote.order.id = undefined;
                             }
 
-                            _context.t13 = bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"];
-                            _context.next = 109;
-                            return _this.account.balances(_this.quote.id);
-
-                        case 109:
-                            _context.t14 = _context.sent[0].amount;
-                            _context.t15 = Math.pow(10, _this.quote.precision);
-                            _accountBalance3 = new _context.t13(_context.t14).div(_context.t15).toNumber();
-
-                            if (!(Math.min(_accountBalance3, state.quote.balance) >= state.quote.amount)) {
-                                _context.next = 125;
+                            if (!(quoteBalance >= state.quote.amount && ticker.highest_bid < sellPrice)) {
+                                _context.next = 111;
                                 break;
                             }
 
                             //buy
                             _this.logger.info("sell: " + sellPrice + " " + _this.quote.symbol + "/" + _this.base.symbol);
-                            _context.prev = 114;
-                            _context.next = 117;
+                            _context.prev = 100;
+                            _context.next = 103;
                             return _this.account.sell(_this.quote.symbol, _this.base.symbol, state.quote.amount, sellPrice);
 
-                        case 117:
+                        case 103:
                             _obj3 = _context.sent;
 
                             state.quote.order = {
@@ -671,26 +673,26 @@ var SpreadTrade = function () {
                                 price: sellPrice,
                                 amount: state.quote.amount
                             };
-                            state.quote.balance -= state.quote.amount;
-                            _context.next = 125;
+                            !["", "-"].includes(state.quote.balance) && (state.quote.balance -= state.quote.amount);
+                            _context.next = 111;
                             break;
 
-                        case 122:
-                            _context.prev = 122;
-                            _context.t16 = _context["catch"](114);
+                        case 108:
+                            _context.prev = 108;
+                            _context.t7 = _context["catch"](100);
 
-                            _this.logger.error(_context.t16);
+                            _this.logger.error(_context.t7);
 
-                        case 125:
+                        case 111:
 
                             _this.storage.write(state);
 
-                        case 126:
+                        case 112:
                         case "end":
                             return _context.stop();
                     }
                 }
-            }, _callee, _this, [[42, 50], [65, 73], [91, 99], [114, 122]]);
+            }, _callee, _this, [[46, 54], [63, 71], [83, 91], [100, 108]]);
         }));
 
         this.account = new lib_bots_account__WEBPACK_IMPORTED_MODULE_6__["default"](account);
@@ -717,7 +719,6 @@ var SpreadTrade = function () {
                         //id, price and amount
                     }
                 },
-                //movePercent: initData.movePercent,
                 defaultPrice: initData.defaultPrice
             });
         }
@@ -738,17 +739,16 @@ var SpreadTrade = function () {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                console.log("start");
                                 state = this.storage.read();
-                                _context2.next = 4;
+                                _context2.next = 3;
                                 return lib_bots_assets__WEBPACK_IMPORTED_MODULE_4__["default"][state.base.asset];
 
-                            case 4:
+                            case 3:
                                 this.base = _context2.sent;
-                                _context2.next = 7;
+                                _context2.next = 6;
                                 return lib_bots_assets__WEBPACK_IMPORTED_MODULE_4__["default"][state.quote.asset];
 
-                            case 7:
+                            case 6:
                                 this.quote = _context2.sent;
 
 
@@ -758,10 +758,10 @@ var SpreadTrade = function () {
                                     this.getFeed = this.getUIAFeed;
                                 }
 
-                                _context2.next = 11;
+                                _context2.next = 10;
                                 return actions_WalletUnlockActions__WEBPACK_IMPORTED_MODULE_8__["default"].unlock();
 
-                            case 11:
+                            case 10:
                                 actions_SettingsActions__WEBPACK_IMPORTED_MODULE_7__["default"].changeSetting({
                                     setting: "walletLockTimeout",
                                     value: 0
@@ -770,7 +770,7 @@ var SpreadTrade = function () {
                                 bitsharesjs__WEBPACK_IMPORTED_MODULE_2__["ChainStore"].subscribe(this.queue);
                                 this.run = true;
 
-                            case 14:
+                            case 13:
                             case "end":
                                 return _context2.stop();
                         }
@@ -850,7 +850,7 @@ var SpreadTrade = function () {
 
                             case 10:
                                 _ref5 = rate.base.asset_id == this.base.id ? [rate.base, rate.quote] : [rate.quote, rate.base], _ref6 = _slicedToArray(_ref5, 2), base = _ref6[0], quote = _ref6[1];
-                                return _context4.abrupt("return", new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](base.amount).div(Math.pow(10, this.base.precision)).div(new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](quote.amount).div(Math.pow(10, this.quote.precision))));
+                                return _context4.abrupt("return", Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(base.amount).div(Math.pow(10, this.base.precision)).div(Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(quote.amount).div(Math.pow(10, this.quote.precision))));
 
                             case 12:
                             case "end":
@@ -887,7 +887,7 @@ var SpreadTrade = function () {
                             case 5:
                                 rate = this.base.options.core_exchange_rate;
                                 _ref8 = rate.base.asset_id == "1.3.0" ? [rate.base, rate.quote] : [rate.quote, rate.base], _ref9 = _slicedToArray(_ref8, 2), base = _ref9[0], quote = _ref9[1];
-                                basePrice = new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](base.amount).div(Math.pow(10, bts.precision)).div(new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](quote.amount).div(Math.pow(10, this.base.precision)));
+                                basePrice = Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(base.amount).div(Math.pow(10, bts.precision)).div(Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(quote.amount).div(Math.pow(10, this.base.precision)));
                                 _context5.next = 10;
                                 return this.quote.update();
 
@@ -901,7 +901,7 @@ var SpreadTrade = function () {
                                     quote = rate.base;
                                 }
 
-                                quotePrice = new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](base.amount).div(Math.pow(10, bts.precision)).div(new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](quote.amount).div(Math.pow(10, this.quote.precision)));
+                                quotePrice = Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(base.amount).div(Math.pow(10, bts.precision)).div(Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(quote.amount).div(Math.pow(10, this.quote.precision)));
                                 return _context5.abrupt("return", quotePrice.div(basePrice));
 
                             case 14:
@@ -931,7 +931,7 @@ var SpreadTrade = function () {
                                     break;
                                 }
 
-                                _context6.t0 = new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](this.defaultPrice);
+                                _context6.t0 = Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(this.defaultPrice);
                                 _context6.next = 7;
                                 break;
 
@@ -963,7 +963,7 @@ var SpreadTrade = function () {
         key: "binancePrice",
         value: function () {
             var _ref11 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(base, quote) {
-                var asset, data;
+                var asset, response, data;
                 return regeneratorRuntime.wrap(function _callee7$(_context7) {
                     while (1) {
                         switch (_context7.prev = _context7.next) {
@@ -975,36 +975,41 @@ var SpreadTrade = function () {
 
                                 _context7.prev = 3;
                                 _context7.next = 6;
-                                return axios__WEBPACK_IMPORTED_MODULE_9___default.a.get("https://api.binance.com/api/v1/trades", { params: { symbol: asset, limit: 1 } });
+                                return fetch("https://api.binance.com/api/v1/trades?symbol=" + asset + "&limit=1");
 
                             case 6:
+                                response = _context7.sent;
+                                _context7.next = 9;
+                                return response.json();
+
+                            case 9:
                                 data = _context7.sent;
 
-                                this.priceArray.push(data.data[0].price);
+                                this.priceArray.push(data[0].price);
                                 //this.priceArray.push(10)
-                                _context7.next = 13;
+                                _context7.next = 16;
                                 break;
 
-                            case 10:
-                                _context7.prev = 10;
+                            case 13:
+                                _context7.prev = 13;
                                 _context7.t0 = _context7["catch"](3);
 
                                 this.logger.error("Error Binance request: " + asset + ", error: " + _context7.t0);
 
-                            case 13:
+                            case 16:
 
                                 if (this.priceArray.length > 10) this.priceArray.shift();
 
                                 return _context7.abrupt("return", this.priceArray.length > 0 ? this.priceArray.reduce(function (a, b) {
                                     return a.plus(b);
-                                }, new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](0)).div(this.priceArray.length) : new bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"](0));
+                                }, Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(0)).div(this.priceArray.length) : Object(bignumber_js__WEBPACK_IMPORTED_MODULE_5__["default"])(0));
 
-                            case 15:
+                            case 18:
                             case "end":
                                 return _context7.stop();
                         }
                     }
-                }, _callee7, this, [[3, 10]]);
+                }, _callee7, this, [[3, 13]]);
             }));
 
             function binancePrice(_x, _x2) {
@@ -1030,13 +1035,18 @@ SpreadTrade.create = components_Bots_SpreadTrade_CreateForm__WEBPACK_IMPORTED_MO
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(386);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lib_bots__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2547);
-/* harmony import */ var bitsharesjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(416);
+/* harmony import */ var lodash_es_debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1009);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(386);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lib_bots__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2547);
+/* harmony import */ var lib_bots_apis__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2550);
+
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1047,13 +1057,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-//import {debounce} from "lodash-es";
+
+//import FloatingDropdown from "components/Utility/FloatingDropdown";
 
 var CreateForm = function (_React$Component) {
     _inherits(CreateForm, _React$Component);
 
     function CreateForm() {
-        var _ref;
+        var _ref,
+            _this2 = this;
 
         var _temp, _this, _ret;
 
@@ -1071,14 +1083,51 @@ var CreateForm = function (_React$Component) {
             quoteAmount: 0.01,
             baseSpread: 10,
             quoteSpread: 10,
-            //movePercent: 5,
             baseBalance: 100,
             quoteBalance: 0.1,
             validate: ["name"]
-        }, _this.handleChange = function (event) {
-            console.log(event.target.name, event.target.value);
+        }, _this.assetValidate = function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(name) {
+                var asset, blockchainAssets, validate;
+                return regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                asset = _this.state[name];
+                                _context.next = 3;
+                                return lib_bots_apis__WEBPACK_IMPORTED_MODULE_3__["default"].db.list_assets(asset, 1);
+
+                            case 3:
+                                blockchainAssets = _context.sent[0];
+                                validate = _this.state.validate;
+
+
+                                if (asset !== blockchainAssets.symbol) validate.push(name);else {
+                                    validate = validate.filter(function (input) {
+                                        return input !== name;
+                                    });
+                                }
+
+                                _this.setState({ validate: validate });
+                                _this.props.enableCreate(_this.state.validate.length == 0);
+
+                            case 8:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, _this2);
+            }));
+
+            return function (_x) {
+                return _ref2.apply(this, arguments);
+            };
+        }(), _this.handleChange = function (event) {
+            //console.log(event.target.name, event.target.value);
             var name = event.target.name,
                 value = event.target.value;
+
+            if (["baseAsset", "quoteAsset"].includes(name)) value = value.toUpperCase();
 
             _this.setState(_defineProperty({}, name, value), function () {
                 return _this.validate(name, value);
@@ -1088,7 +1137,7 @@ var CreateForm = function (_React$Component) {
 
             switch (name) {
                 case "name":
-                    if (value.length == 0 || lib_bots__WEBPACK_IMPORTED_MODULE_1__["default"].hasBot(_this.props.account, _this.props.name, value)) {
+                    if (!/^\w+$/.test(value) || lib_bots__WEBPACK_IMPORTED_MODULE_2__["default"].hasBot(_this.props.account, _this.props.name, value)) {
                         validate.push(name);
                         _this.setState({ validate: validate });
                     } else {
@@ -1102,33 +1151,40 @@ var CreateForm = function (_React$Component) {
                 case "baseAsset":
                 case "quoteAsset":
                     if (value.length !== 0) {
-                        // TODO check asset in blockchain
-                        _this.setState({
-                            validate: validate.filter(function (input) {
-                                return input !== name;
-                            })
-                        });
+                        _this.assetValidate(name);
                     } else {
                         validate.push(name);
                         _this.setState({ validate: validate });
                     }
                     break;
-                case "baseAmount":
-                case "quoteAmount":
                 case "baseBalance":
                 case "quoteBalance":
-                case "baseSpread":
-                case "quoteSpread":
-                /*case "movePercent":
-                    if (value === "" || isNaN(+value)) {
+                    if (value !== "-" && isNaN(+value)) {
                         validate.push(name);
-                        this.setState({validate});
+                        _this.setState({ validate: validate });
                     } else {
-                        this.setState({
-                            validate: validate.filter(input => input !== name)
+                        _this.setState({
+                            validate: validate.filter(function (input) {
+                                return input !== name;
+                            })
                         });
                     }
-                    break;*/
+                    break;
+                case "baseAmount":
+                case "quoteAmount":
+                case "baseSpread":
+                case "quoteSpread":
+                    if (value === "" || isNaN(+value)) {
+                        validate.push(name);
+                        _this.setState({ validate: validate });
+                    } else {
+                        _this.setState({
+                            validate: validate.filter(function (input) {
+                                return input !== name;
+                            })
+                        });
+                    }
+                    break;
                 case "defaultPrice":
                     if (!isNaN(+value)) _this.setState({
                         validate: validate.filter(function (input) {
@@ -1141,26 +1197,31 @@ var CreateForm = function (_React$Component) {
                     break;
             }
 
-            //console.log(this.state.validate)
+            console.log(_this.state.validate);
             _this.props.enableCreate(_this.state.validate.length == 0);
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(CreateForm, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this.assetValidate = Object(lodash_es_debounce__WEBPACK_IMPORTED_MODULE_0__["default"])(this.assetValidate, 200);
+        }
+    }, {
         key: "render",
         value: function render() {
-            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+            return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                 "div",
                 null,
-                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                     "div",
                     { className: "content-block" },
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                         "label",
                         { className: "left-label" },
                         "Name"
                     ),
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                    react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                         name: "name",
                         id: "name",
                         type: "text",
@@ -1173,23 +1234,23 @@ var CreateForm = function (_React$Component) {
                         }
                     })
                 ),
-                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                     "div",
                     { className: "grid-block horizontal" },
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                         "div",
                         { className: "content-block", style: { marginLeft: 50 } },
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                             "label",
                             { style: { textAlign: "center" } },
                             "Base"
                         ),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                             "label",
                             { className: "left-label" },
                             "Asset"
                         ),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                             name: "baseAsset",
                             id: "baseAsset",
                             type: "text",
@@ -1202,12 +1263,12 @@ var CreateForm = function (_React$Component) {
                                 border: this.state.validate.includes("baseAsset") ? "1px solid red" : "none"
                             }
                         }),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                             "label",
                             { className: "left-label" },
                             "Balance"
                         ),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                             name: "baseBalance",
                             id: "baseBalance",
                             type: "text",
@@ -1220,12 +1281,12 @@ var CreateForm = function (_React$Component) {
                                 border: this.state.validate.includes("baseBalance") ? "1px solid red" : "none"
                             }
                         }),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                             "label",
                             { className: "left-label" },
-                            "Amount"
+                            "Amount in order"
                         ),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                             name: "baseAmount",
                             id: "baseAmount",
                             type: "text",
@@ -1238,12 +1299,12 @@ var CreateForm = function (_React$Component) {
                                 border: this.state.validate.includes("baseAmount") ? "1px solid red" : "none"
                             }
                         }),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                             "label",
                             { className: "left-label" },
-                            "Spread"
+                            "Spread, %"
                         ),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                             name: "baseSpread",
                             id: "baseSpread",
                             type: "text",
@@ -1257,20 +1318,20 @@ var CreateForm = function (_React$Component) {
                             }
                         })
                     ),
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                         "div",
                         { className: "content-block", style: { marginLeft: 50 } },
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                             "label",
                             { style: { textAlign: "center" } },
                             "Quote"
                         ),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                             "label",
                             { className: "left-label" },
                             "Asset"
                         ),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                             name: "quoteAsset",
                             id: "quoteAsset",
                             type: "text",
@@ -1283,12 +1344,12 @@ var CreateForm = function (_React$Component) {
                                 border: this.state.validate.includes("quoteAsset") ? "1px solid red" : "none"
                             }
                         }),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                             "label",
                             { className: "left-label" },
                             "Balance"
                         ),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                             name: "quoteBalance",
                             id: "quoteBalance",
                             type: "text",
@@ -1301,12 +1362,12 @@ var CreateForm = function (_React$Component) {
                                 border: this.state.validate.includes("quoteBalance") ? "1px solid red" : "none"
                             }
                         }),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                             "label",
                             { className: "left-label" },
-                            "Amount"
+                            "Amount in order"
                         ),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                             name: "quoteAmount",
                             id: "quoteAmount",
                             type: "text",
@@ -1319,12 +1380,12 @@ var CreateForm = function (_React$Component) {
                                 border: this.state.validate.includes("quoteAmount") ? "1px solid red" : "none"
                             }
                         }),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                             "label",
                             { className: "left-label" },
-                            "Spread"
+                            "Spread, %"
                         ),
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                        react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                             name: "quoteSpread",
                             id: "quoteSpread",
                             type: "text",
@@ -1339,15 +1400,15 @@ var CreateForm = function (_React$Component) {
                         })
                     )
                 ),
-                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                     "div",
                     { className: "content-block" },
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
                         "label",
                         { className: "left-label" },
                         "Default Price"
                     ),
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                    react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                         name: "defaultPrice",
                         id: "defaultPrice",
                         type: "text",
@@ -1365,7 +1426,7 @@ var CreateForm = function (_React$Component) {
     }]);
 
     return CreateForm;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (CreateForm);
 
@@ -1376,11 +1437,62 @@ var CreateForm = function (_React$Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(485);
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    db: new Proxy(bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__["Apis"], {
+        get: function get(apis, method) {
+            return function () {
+                //console.log(`call Apis.db.${method}(${[...arguments]})`);
+                return apis.instance().db_api().exec(method, [].concat(Array.prototype.slice.call(arguments)));
+            };
+        }
+    }),
+
+    history: new Proxy(bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__["Apis"], {
+        get: function get(apis, method) {
+            return function () {
+                return apis.instance().history_api().exec(method, [].concat(Array.prototype.slice.call(arguments)));
+            };
+        }
+    }),
+
+    network: new Proxy(bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__["Apis"], {
+        get: function get(apis, method) {
+            return function () {
+                return apis.instance().network_api().exec(method, [].concat(Array.prototype.slice.call(arguments)));
+            };
+        }
+    }),
+
+    crypto: new Proxy(bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__["Apis"], {
+        get: function get(apis, method) {
+            return function () {
+                return apis.instance().crypto_api().exec(method, [].concat(Array.prototype.slice.call(arguments)));
+            };
+        }
+    }),
+
+    orders: new Proxy(bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__["Apis"], {
+        get: function get(apis, method) {
+            return function () {
+                return apis.instance().orders_api().exec(method, [].concat(Array.prototype.slice.call(arguments)));
+            };
+        }
+    })
+});
+
+/***/ }),
+
+/***/ 2551:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(386);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1404,9 +1516,7 @@ var StateForm = function (_React$Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = StateForm.__proto__ || Object.getPrototypeOf(StateForm)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            validate: []
-        }, _this.handleChange = function (event) {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = StateForm.__proto__ || Object.getPrototypeOf(StateForm)).call.apply(_ref, [this].concat(args))), _this), _this.handleChange = function (event) {
             var name = event.target.name,
                 value = event.target.value,
                 base = void 0,
@@ -1443,29 +1553,29 @@ var StateForm = function (_React$Component) {
                     quote.spread = value;
                     _this.setState({ quote: quote });
                     break;
-                //case "movePercent":
                 case "defaultPrice":
-                    _this.setState(_defineProperty({}, name, value));
+                    _this.setState({ defaultPrice: value });
                     break;
             }
 
             //this.setState({[name]: value}, () => this.validate(name, value));
         }, _this.handleUpdateBot = function () {
+            var stateNow = _this.props.bot.storage.read();
+            _this.state.base.order = stateNow.base.order;
+            _this.state.quote.order = stateNow.quote.order;
+
             _this.props.bot.storage.write(_this.state);
-        }, _this.validate = function (name, value) {}, _temp), _possibleConstructorReturn(_this, _ret);
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(StateForm, [{
         key: "componentWillMount",
         value: function componentWillMount() {
-            console.log(this.props.bot);
-
-            this.setState(this.props.bot.storage.read());
+            this.setState(Object.assign({ validate: [] }, this.props.bot.storage.read()));
         }
     }, {
         key: "render",
         value: function render() {
-            console.log("StateForm props", this.props);
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                 "div",
                 null,
@@ -1683,65 +1793,12 @@ var StateForm = function (_React$Component) {
 
 /***/ }),
 
-/***/ 2551:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(485);
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    db: new Proxy(bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__["Apis"], {
-        get: function get(apis, method) {
-            return function () {
-                //console.log(`call Apis.db.${method}(${[...arguments]})`);
-                return apis.instance().db_api().exec(method, [].concat(Array.prototype.slice.call(arguments)));
-            };
-        }
-    }),
-
-    history: new Proxy(bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__["Apis"], {
-        get: function get(apis, method) {
-            return function () {
-                return apis.instance().history_api().exec(method, [].concat(Array.prototype.slice.call(arguments)));
-            };
-        }
-    }),
-
-    network: new Proxy(bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__["Apis"], {
-        get: function get(apis, method) {
-            return function () {
-                return apis.instance().network_api().exec(method, [].concat(Array.prototype.slice.call(arguments)));
-            };
-        }
-    }),
-
-    crypto: new Proxy(bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__["Apis"], {
-        get: function get(apis, method) {
-            return function () {
-                return apis.instance().crypto_api().exec(method, [].concat(Array.prototype.slice.call(arguments)));
-            };
-        }
-    }),
-
-    orders: new Proxy(bitsharesjs_ws__WEBPACK_IMPORTED_MODULE_0__["Apis"], {
-        get: function get(apis, method) {
-            return function () {
-                return apis.instance().orders_api().exec(method, [].concat(Array.prototype.slice.call(arguments)));
-            };
-        }
-    })
-});
-
-/***/ }),
-
 /***/ 2552:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lib_bots_apis__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2551);
+/* harmony import */ var lib_bots_apis__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2550);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -2006,7 +2063,7 @@ var Asset = function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lib_bots_apis__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2551);
+/* harmony import */ var lib_bots_apis__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2550);
 /* harmony import */ var lib_bots_assets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2552);
 /* harmony import */ var bignumber_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1287);
 /* harmony import */ var stores_WalletDb__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(589);
@@ -2294,119 +2351,7 @@ var Account = function () {
 
 /***/ }),
 
-/***/ 2580:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var components_Bots_RelativeOrders_Create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2581);
-/* harmony import */ var components_Bots_RelativeOrders_State__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2582);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-
-
-
-var RelativeOrders = function RelativeOrders() {
-    _classCallCheck(this, RelativeOrders);
-};
-
-RelativeOrders.create = components_Bots_RelativeOrders_Create__WEBPACK_IMPORTED_MODULE_0__["default"];
-RelativeOrders.state = components_Bots_RelativeOrders_State__WEBPACK_IMPORTED_MODULE_1__["default"];
-
-
-/* harmony default export */ __webpack_exports__["default"] = (RelativeOrders);
-
-/***/ }),
-
-/***/ 2581:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(386);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var Create = function (_React$Component) {
-    _inherits(Create, _React$Component);
-
-    function Create() {
-        _classCallCheck(this, Create);
-
-        return _possibleConstructorReturn(this, (Create.__proto__ || Object.getPrototypeOf(Create)).apply(this, arguments));
-    }
-
-    _createClass(Create, [{
-        key: "render",
-        value: function render() {
-            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                "p",
-                null,
-                "Hello Create RelativeOrders"
-            );
-        }
-    }]);
-
-    return Create;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (Create);
-
-/***/ }),
-
-/***/ 2582:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(386);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var State = function (_React$Component) {
-    _inherits(State, _React$Component);
-
-    function State() {
-        _classCallCheck(this, State);
-
-        return _possibleConstructorReturn(this, (State.__proto__ || Object.getPrototypeOf(State)).apply(this, arguments));
-    }
-
-    _createClass(State, [{
-        key: "render",
-        value: function render() {
-            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                "p",
-                null,
-                "Hello State RelativeOrders"
-            );
-        }
-    }]);
-
-    return State;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (State);
-
-/***/ }),
-
-/***/ 2583:
+/***/ 2554:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

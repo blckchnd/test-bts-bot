@@ -1,14 +1,14 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[26],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[25],{
 
-/***/ 2750:
+/***/ 2721:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var api = __webpack_require__(2751);
-var config = __webpack_require__(2752);
-var utils = __webpack_require__(2769);
+var api = __webpack_require__(2722);
+var config = __webpack_require__(2723);
+var utils = __webpack_require__(2740);
 
 module.exports = {
   api: api,
@@ -18,7 +18,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 2751:
+/***/ 2722:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32,21 +32,21 @@ var _events = __webpack_require__(449);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _config = __webpack_require__(2752);
+var _config = __webpack_require__(2723);
 
 var _config2 = _interopRequireDefault(_config);
 
-var _methods = __webpack_require__(2761);
+var _methods = __webpack_require__(2732);
 
 var _methods2 = _interopRequireDefault(_methods);
 
-var _transports = __webpack_require__(2762);
+var _transports = __webpack_require__(2733);
 
 var _transports2 = _interopRequireDefault(_transports);
 
-var _utils = __webpack_require__(2769);
+var _utils = __webpack_require__(2740);
 
-var _http = __webpack_require__(2763);
+var _http = __webpack_require__(2734);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -297,7 +297,7 @@ exports.Steem = Steem;
 
 /***/ }),
 
-/***/ 2752:
+/***/ 2723:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -305,7 +305,7 @@ exports.Steem = Steem;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _each = __webpack_require__(2753);
+var _each = __webpack_require__(2724);
 
 var _each2 = _interopRequireDefault(_each);
 
@@ -313,7 +313,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var defaultConfig = __webpack_require__(2760);
+var defaultConfig = __webpack_require__(2731);
 
 var Config = function () {
   function Config(c) {
@@ -349,20 +349,20 @@ module.exports.Config = Config;
 
 /***/ }),
 
-/***/ 2753:
+/***/ 2724:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(2754);
+module.exports = __webpack_require__(2725);
 
 
 /***/ }),
 
-/***/ 2754:
+/***/ 2725:
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayEach = __webpack_require__(2755),
-    baseEach = __webpack_require__(2756),
-    castFunction = __webpack_require__(2759),
+var arrayEach = __webpack_require__(2726),
+    baseEach = __webpack_require__(2727),
+    castFunction = __webpack_require__(2730),
     isArray = __webpack_require__(1780);
 
 /**
@@ -405,7 +405,7 @@ module.exports = forEach;
 
 /***/ }),
 
-/***/ 2755:
+/***/ 2726:
 /***/ (function(module, exports) {
 
 /**
@@ -434,11 +434,11 @@ module.exports = arrayEach;
 
 /***/ }),
 
-/***/ 2756:
+/***/ 2727:
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseForOwn = __webpack_require__(2757),
-    createBaseEach = __webpack_require__(2758);
+var baseForOwn = __webpack_require__(2728),
+    createBaseEach = __webpack_require__(2729);
 
 /**
  * The base implementation of `_.forEach` without support for iteratee shorthands.
@@ -455,7 +455,7 @@ module.exports = baseEach;
 
 /***/ }),
 
-/***/ 2757:
+/***/ 2728:
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseFor = __webpack_require__(1954),
@@ -478,7 +478,7 @@ module.exports = baseForOwn;
 
 /***/ }),
 
-/***/ 2758:
+/***/ 2729:
 /***/ (function(module, exports, __webpack_require__) {
 
 var isArrayLike = __webpack_require__(1968);
@@ -517,7 +517,7 @@ module.exports = createBaseEach;
 
 /***/ }),
 
-/***/ 2759:
+/***/ 2730:
 /***/ (function(module, exports, __webpack_require__) {
 
 var identity = __webpack_require__(1986);
@@ -538,14 +538,14 @@ module.exports = castFunction;
 
 /***/ }),
 
-/***/ 2760:
+/***/ 2731:
 /***/ (function(module) {
 
 module.exports = {"transport":"http","websocket":"wss://gtg.steem.house:8090","uri":"https://api.steemit.com","url":"","dev_uri":"https://api.steemitdev.com","stage_uri":"https://api.steemitstage.com","address_prefix":"STM","chain_id":"0000000000000000000000000000000000000000000000000000000000000000"};
 
 /***/ }),
 
-/***/ 2761:
+/***/ 2732:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -949,7 +949,7 @@ exports.default = [{
 
 /***/ }),
 
-/***/ 2762:
+/***/ 2733:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -959,11 +959,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _http = __webpack_require__(2763);
+var _http = __webpack_require__(2734);
 
 var _http2 = _interopRequireDefault(_http);
 
-var _ws = __webpack_require__(2766);
+var _ws = __webpack_require__(2737);
 
 var _ws2 = _interopRequireDefault(_ws);
 
@@ -976,7 +976,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 2763:
+/***/ 2734:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -990,7 +990,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports.jsonRpc = jsonRpc;
 
-var _crossFetch = __webpack_require__(2764);
+var _crossFetch = __webpack_require__(2735);
 
 var _crossFetch2 = _interopRequireDefault(_crossFetch);
 
@@ -998,7 +998,7 @@ var _debug = __webpack_require__(1034);
 
 var _debug2 = _interopRequireDefault(_debug);
 
-var _base = __webpack_require__(2765);
+var _base = __webpack_require__(2736);
 
 var _base2 = _interopRequireDefault(_base);
 
@@ -1092,7 +1092,7 @@ exports.default = HttpTransport;
 
 /***/ }),
 
-/***/ 2764:
+/***/ 2735:
 /***/ (function(module, exports) {
 
 var self = {};
@@ -1577,7 +1577,7 @@ var self = {};
 
 /***/ }),
 
-/***/ 2765:
+/***/ 2736:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1649,7 +1649,7 @@ exports.default = Transport;
 
 /***/ }),
 
-/***/ 2766:
+/***/ 2737:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1661,7 +1661,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _detectNode = __webpack_require__(2767);
+var _detectNode = __webpack_require__(2738);
 
 var _detectNode2 = _interopRequireDefault(_detectNode);
 
@@ -1669,7 +1669,7 @@ var _debug = __webpack_require__(1034);
 
 var _debug2 = _interopRequireDefault(_debug);
 
-var _base = __webpack_require__(2765);
+var _base = __webpack_require__(2736);
 
 var _base2 = _interopRequireDefault(_base);
 
@@ -1683,7 +1683,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var WebSocket = void 0;
 if (_detectNode2.default) {
-  WebSocket = __webpack_require__(2768); // eslint-disable-line global-require
+  WebSocket = __webpack_require__(2739); // eslint-disable-line global-require
 } else if (typeof window !== 'undefined') {
   WebSocket = window.WebSocket;
 } else {
@@ -1880,7 +1880,7 @@ exports.default = WsTransport;
 
 /***/ }),
 
-/***/ 2767:
+/***/ 2738:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {module.exports = false;
@@ -1894,7 +1894,7 @@ try {
 
 /***/ }),
 
-/***/ 2769:
+/***/ 2740:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

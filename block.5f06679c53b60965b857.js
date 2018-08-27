@@ -53,7 +53,7 @@ LinkToWitnessById = Object(_Utility_BindToChainState__WEBPACK_IMPORTED_MODULE_2_
 
 /***/ }),
 
-/***/ 2803:
+/***/ 2774:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63,7 +63,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var stores_BlockchainStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(798);
 /* harmony import */ var alt_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(881);
 /* harmony import */ var alt_container__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(alt_container__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Block__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2804);
+/* harmony import */ var _Block__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2775);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -119,7 +119,7 @@ var BlockContainer = function (_React$Component) {
 
 /***/ }),
 
-/***/ 2804:
+/***/ 2775:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
