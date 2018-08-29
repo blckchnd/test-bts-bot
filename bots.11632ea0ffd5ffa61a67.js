@@ -131,7 +131,7 @@ var Bots = function (_React$Component) {
             this.setState({
                 bots: bots,
                 selectBot: 0,
-                botRun: bots[0].run
+                botRun: bots[0] ? bots[0].run : false
             });
         }
     }, {
